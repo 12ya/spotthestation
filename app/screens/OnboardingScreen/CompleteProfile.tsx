@@ -16,6 +16,7 @@ import analytics from "@react-native-firebase/analytics"
 import { translate } from "../../i18n"
 import { StyleFn, useStyles } from "../../utils/useStyles"
 import { LocationType } from "../../services/api"
+import { skipOnboarding } from "../../navigators"
 
 export const CompleteProfile = observer(function CompleteProfile() {
   const { $container, $contentContainer, $back, $step } = useStyles(styles)
@@ -48,7 +49,7 @@ export const CompleteProfile = observer(function CompleteProfile() {
       .catch(() => null)
     storage
       .save("isSettingsCompleted", true)
-      .then(() => navigation.navigate("Main" as never))
+      .then(() => skipOnboarding())
       .catch((err) =>
         Snackbar.show({
           text: err as string,
@@ -65,13 +66,14 @@ export const CompleteProfile = observer(function CompleteProfile() {
   }
 
   const handleLocationChange = (location: LocationType) => {
+    if (location) setLocation(location)
+
     const isSameLocation =
       currentLocation &&
       location?.location.lat === currentLocation?.location.lat &&
       location?.location.lng === currentLocation?.location.lng
     if (isSameLocation) return
 
-    setLocation(location)
     setInitLoading(true)
     setCurrentLocation(location, true).catch((e) => console.log(e))
   }

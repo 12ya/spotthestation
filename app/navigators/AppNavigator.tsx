@@ -9,7 +9,6 @@ import {
   DefaultTheme,
   NavigationContainer,
   NavigatorScreenParams,
-  useNavigation,
 } from "@react-navigation/native"
 import { createNativeStackNavigator } from "@react-navigation/native-stack"
 import { StackScreenProps } from "@react-navigation/stack"
@@ -20,7 +19,7 @@ import * as storage from "../utils/storage"
 import Config from "../config"
 import { TabNavigator, TabParamList } from "./TabNavigator"
 import { OnboardingNavigator, OnboardingParamList } from "./OnboardingNavigator"
-import { navigationRef, useBackButtonHandler } from "./navigationUtilities"
+import { navigationRef, skipOnboarding, useBackButtonHandler } from "./navigationUtilities"
 import { SettingsNavigator, SettingsParamList } from "./SettingsNavigation"
 import { ResourcesNavigator, ResourcesParamList } from "./ResourcesNavigator"
 import Snackbar from "react-native-snackbar"
@@ -61,13 +60,11 @@ export type AppStackScreenProps<T extends keyof AppStackParamList> = StackScreen
 const Stack = createNativeStackNavigator<AppStackParamList>()
 
 const AppStack = observer(function AppStack() {
-  const navigation = useNavigation()
-
   useEffect(() => {
     storage
       .load("isSettingsCompleted")
       .then((res) => {
-        if (res) navigation.navigate("Main" as never)
+        if (res) skipOnboarding()
       })
       .catch((err) =>
         Snackbar.show({

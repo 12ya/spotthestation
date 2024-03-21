@@ -170,3 +170,16 @@ export function resetRoot(params = { index: 0, routes: [] }) {
     navigationRef.resetRoot(params)
   }
 }
+
+export function skipOnboarding() {
+  const routes = navigationRef.getRootState().routes
+  const newRoutes = routes.filter((r) => r.name !== "Onboarding")
+
+  if (newRoutes.length !== routes.length) {
+    resetRoot({
+      ...navigationRef.getRootState(),
+      index: 0,
+      routes: newRoutes.length > 0 ? newRoutes : [{ name: "Main" }],
+    })
+  }
+}

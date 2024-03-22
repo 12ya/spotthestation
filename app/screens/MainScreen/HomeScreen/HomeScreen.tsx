@@ -5,7 +5,7 @@ import { BackHandler, Platform, ViewStyle } from "react-native"
 import { Screen } from "../../../components"
 import { LocationType, OrbitPoint } from "../../../services/api"
 import { colors } from "../../../theme"
-import { formatDateWithTZ, getCurrentTimeZone } from "../../../utils/formatDate"
+import { formatDateWithTZ, getCurrentTimeZone, getShortTZ } from "../../../utils/formatDate"
 import { useSafeAreaInsetsStyle } from "../../../utils/useSafeAreaInsetsStyle"
 import * as storage from "../../../utils/storage"
 import { FlatMap } from "../components/FlatMap"
@@ -25,6 +25,7 @@ import { StyleFn, useStyles } from "../../../utils/useStyles"
 import { translate } from "../../../i18n"
 import i18n from "i18n-js"
 import { navigationRef } from "../../../navigators/navigationUtilities"
+import { getCalendars } from "expo-localization"
 
 export interface HomeScreenRouteProps {
   showSightings: boolean
@@ -333,6 +334,17 @@ export const HomeScreen = observer(function HomeScreen() {
     [current],
   )
 
+  const formatedDate = (date: string): string => {
+    const timeFormat = getCalendars()[0].uses24hourClock ? "H:mm" : "h:mm aa"
+    const timezone = current?.timezone || getCurrentTimeZone()
+    const shortTZ = getShortTZ(current?.timezone || getCurrentTimeZone())
+    return `${formatDateWithTZ(
+      date,
+      `${i18n.locale === "en" ? "MMM dd" : "dd MMM"}, ${timeFormat}`,
+      timezone,
+    )} ${shortTZ}`
+  }
+
   const renderCoachMarks = useCallback(() => {
     switch (stage) {
       case 1:
@@ -415,11 +427,7 @@ export const HomeScreen = observer(function HomeScreen() {
         onSightingsPress={() => current && requestOpenModal("sightings")}
         sighting={
           currentSighting.date
-            ? formatDateWithTZ(
-                currentSighting.date,
-                i18n.locale === "en" ? "MMM dd, yyyy" : "dd MMM yyyy",
-                current?.timezone || getCurrentTimeZone(),
-              )
+            ? formatedDate(currentSighting.date)
             : "-"
         }
         countdown={`${translate("units.time")} ${countdown}`}

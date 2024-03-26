@@ -425,11 +425,7 @@ export const HomeScreen = observer(function HomeScreen() {
         user={{ firstName: "User", address }}
         onLocationPress={() => requestOpenModal("location")}
         onSightingsPress={() => current && requestOpenModal("sightings")}
-        sighting={
-          currentSighting.date
-            ? formatedDate(currentSighting.date)
-            : "-"
-        }
+        sighting={currentSighting.date ? formatedDate(currentSighting.date) : "-"}
         countdown={`${translate("units.time")} ${countdown}`}
         timezone={current?.timezone || getCurrentTimeZone()}
       />

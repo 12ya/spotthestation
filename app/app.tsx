@@ -28,6 +28,7 @@ import { enableLatestRenderer } from "react-native-maps"
 import i18n from "i18n-js"
 import { AppState, Platform, ViewStyle } from "react-native"
 import { GestureHandlerRootView } from "react-native-gesture-handler"
+import * as notifications from "./utils/notifications"
 
 const codePushConfig = {
   checkFrequency: codePush.CheckFrequency.ON_APP_RESUME,
@@ -111,6 +112,10 @@ function App(props: AppProps) {
 
   const updateLocationAddresses = useCallback(() => {
     rootStore.updateLocationAddresses().catch(console.log)
+  }, [])
+
+  useEffect(() => {
+    notifications.initialize()
   }, [])
 
   useEffect(() => {

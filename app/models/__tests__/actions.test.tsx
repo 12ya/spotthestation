@@ -1,6 +1,6 @@
 import MockDate from "mockdate"
 import { RootStoreModel } from "../RootStore"
-import notifications from "../../utils/notifications"
+import * as notifications from "../../utils/notifications"
 import { LocationType } from "../../services/api"
 
 jest.mock("../../utils/notifications", () => ({

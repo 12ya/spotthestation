@@ -1,6 +1,6 @@
 import AsyncStorage from "@react-native-async-storage/async-storage"
-import notifications from "../../utils/notifications"
-import PushNotificationIOS from "@react-native-community/push-notification-ios"
+import * as notifications from "../../utils/notifications"
+import notifee from "@notifee/react-native"
 import MockDate from "mockdate"
 import { LocationType } from "../../services/api"
 
@@ -32,7 +32,7 @@ describe("notifications", () => {
       },
     ] as LocationType[])
 
-    expect(PushNotificationIOS.removeAllPendingNotificationRequests).toBeCalledTimes(1)
-    expect(PushNotificationIOS.addNotificationRequest).toBeCalledTimes(2)
+    expect(notifee.cancelTriggerNotifications).toBeCalledTimes(1)
+    expect(notifee.createTriggerNotification).toBeCalledTimes(2)
   })
 })

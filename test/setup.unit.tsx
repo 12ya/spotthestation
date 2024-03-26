@@ -92,16 +92,14 @@ jest.mock("../app/services/api", () => ({
     getLocationTimeZone: () => new Promise((resolve) => resolve({ kind: "ok", zone: 'US/Central' }))
   },
 }))
-jest.mock("react-native-push-notification", () => ({
+jest.mock("@notifee/react-native", () => ({
   createChannel: jest.fn(),
-  configure: jest.fn(),
-  cancelAllLocalNotifications: jest.fn(),
-  localNotificationSchedule: jest.fn()
+  requestPermission: jest.fn(),
+  cancelTriggerNotifications: jest.fn(),
+  createTriggerNotification: jest.fn(),
+  TriggerType: { TIMESTAMP: 0 },
 }))
-jest.mock("@react-native-community/push-notification-ios", () => ({
-  removeAllPendingNotificationRequests: jest.fn(),
-  addNotificationRequest: jest.fn(),
-}))
+
 jest.mock("react-native-safe-area-context", () => ({
   useSafeAreaInsets: () => ({ top: 0 }),
 }))

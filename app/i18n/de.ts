@@ -194,7 +194,7 @@ const de = {
       "Sie haben die Verwendung der Kamera Ihres Telefons nicht zugelassen.Klicken Sie hier, um zuzulassen.",
     issCaptured: "Erfassen Sie diesen Moment",
     details: {
-      title: "Internationale Raumstation - Details",
+      title: "Information",
       orbitalSpeed: "Orbitalgeschwindigkeit",
       longitude: "Längengrad",
       latitude: "Breite",
@@ -207,6 +207,13 @@ const de = {
       orbitalPeriod: "Umlaufzeit",
       orbitsPerDay: "Umlaufbahnen/Tag",
       dimensionsValue: "109 m breit x 73 m lang x 14 m hoch",
+      dateTime: "Datum und Uhrzeit",
+      maxHeight: "Maximale Höhe",
+      duration: "Dauer über dem Horizont",
+      appears: "Erscheint",
+      disappears: "Verschwindet",
+      distance: "Entfernung",
+      nextSighting: "Nächste Sichtung",
     },
     arNotSupported: "AR wird auf diesem Gerät nicht unterstützt",
     noOrientationSensor: "Orientierungssensor nicht verfügbar",
@@ -370,6 +377,9 @@ const de = {
     liveTitle: "Hochauflösendes Live-Streaming-Video der Erde",
     liveDescription:
       "Derzeit wird ein Live-Video der Erde von einer externen HD-Kamera auf der ISS übertragen. Die Kamera schaut auf die Erde, gelegentlich überquert ein Sonnenkollektor das Bild.",
+    details: {
+      title: "Internationale Raumstation - Details",
+    },
     tabs: {
       news: "Nachricht",
       about: "Um",

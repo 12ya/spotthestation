@@ -192,7 +192,7 @@ const en = {
       "You have not allowed the use of your phone's camera. Click here to allow.",
     issCaptured: "Capture this moment",
     details: {
-      title: "International Space Station - Details",
+      title: "Information",
       orbitalSpeed: "Orbital speed",
       longitude: "Longitude",
       latitude: "Latitude",
@@ -205,6 +205,13 @@ const en = {
       orbitalPeriod: "Orbital Period",
       orbitsPerDay: "Orbits/Day",
       dimensionsValue: "109m wide x 73m long x 14m tall",
+      dateTime: "Date and Time",
+      maxHeight: "Max Height",
+      duration: "Duration Above Horizon",
+      appears: "Appears",
+      disappears: "Disappears",
+      distance: "Distance",
+      nextSighting: "Next Sighting",
     },
     arNotSupported: "AR is not supported on this device",
     noOrientationSensor: "Orientation sensor is not available",
@@ -368,6 +375,9 @@ const en = {
     liveTitle: "High Definition Live Streaming Video of the Earth",
     liveDescription:
       "Currently, live video of Earth is streaming from an external HD camera mounted on the ISS. The camera is looking toward Earth with an occasional solar panel passing through the view.",
+    details: {
+      title: "International Space Station - Details",
+    },
     tabs: {
       news: "News",
       about: "About",

@@ -51,6 +51,8 @@ import { CalibrateCompassModal } from "../SettingsScreen/CalibrateCompassModal"
 import MyModal from "../HomeScreen/MyModal"
 import { TrajectoryError } from "../HomeScreen/TrajectoryError"
 import { useSafeAreaInsetsStyle } from "../../../utils/useSafeAreaInsetsStyle"
+import { DetailsModal } from "./DetailsModal"
+import { useNavigation, useRoute } from "@react-navigation/native"
 
 function checkCameraPermissions(callback: (value: boolean) => void) {
   if (Platform.OS === "android") {
@@ -203,6 +205,9 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
     requestCloseModal,
     setTrajectoryError,
   } = useStores()
+  const route = useRoute<any>()
+  const navigation = useNavigation()
+
   const [isFullScreen, setIsFullScreen] = useState(true)
   const [isPathVisible, setIsPathVisible] = useState(true)
   const [isCameraAllowed, setIsCameraAllowed] = useState(false)
@@ -217,6 +222,14 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
   const [isSupported, setIsSupported] = useState(false)
   const [isCalibrated, setIsCalibrated] = useState(false)
   const [isCalibrationModalVisible, setIsCalibrationModalVisible] = useState(false)
+
+  useEffect(() => {
+    if (route.params?.info) {
+      requestOpenModal("details")
+      navigation.setParams({ info: undefined } as never)
+    }
+  }, [route.params])
+
   const current = useMemo(
     () => selectedLocation || currentLocation,
     [selectedLocation, currentLocation],
@@ -505,6 +518,14 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
   useEffect(() => toggleBottomTabs(!isFullScreen), [isFullScreen])
   useEffect(() => toggleIsLandscape(isLandscape), [isLandscape])
 
+  const onDetails = () => {
+    requestOpenModal("details")
+  }
+
+  const closeDetails = useCallback(() => {
+    requestCloseModal("details")
+  }, [])
+
   const onShare = async () => {
     try {
       let url = mediaUrl
@@ -682,6 +703,14 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
             <View style={[$buttonColumn, isLandscape && $row]}>
               <IconLinkButton
                 accessible
+                accessibilityLabel="information"
+                accessibilityHint="open information modal"
+                icon="information"
+                buttonStyle={[isFullScreen ? $buttonFs : $button, isLandscape && $ml24]}
+                onPress={onDetails}
+              />
+              <IconLinkButton
+                accessible
                 accessibilityLabel="share"
                 accessibilityHint="open share modal"
                 icon="share"
@@ -797,6 +826,22 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
             setTrajectoryError(false)
           }}
         />
+      </MyModal>
+
+      <MyModal
+        name="details"
+        onBackdropPress={closeDetails}
+        onSwipeComplete={closeDetails}
+        useNativeDriver={false}
+        useNativeDriverForBackdrop
+        propagateSwipe
+        backdropOpacity={0}
+        animationIn="slideInUp"
+        animationOut="slideOutDown"
+        swipeDirection="down"
+        style={[$modal, Platform.OS === "ios" && $topInsetMargin]}
+      >
+        <DetailsModal issData={issData} location={current} onClose={closeDetails} />
       </MyModal>
     </Screen>
   )

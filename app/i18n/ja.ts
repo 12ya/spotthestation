@@ -189,7 +189,7 @@ const ja = {
       "携帯電話のカメラの使用は許可されていません。許可するにはここをクリックしてください。",
     issCaptured: "この瞬間をキャプチャします",
     details: {
-      title: "国際宇宙ステーション - 詳細",
+      title: "情報",
       orbitalSpeed: "軌道速度",
       longitude: "経度",
       latitude: "緯度",
@@ -202,6 +202,13 @@ const ja = {
       orbitalPeriod: "軌道期間",
       orbitsPerDay: "軌道/日",
       dimensionsValue: "幅109m x長さ73m x高さ14m",
+      dateTime: "日付と時刻",
+      maxHeight: "最大高度",
+      duration: "地平線上の持続時間",
+      appears: "出現",
+      disappears: "消滅",
+      distance: "距離",
+      nextSighting: "次の観測",
     },
     arNotSupported: "このデバイスではARはサポートされていません",
     noOrientationSensor: "方向センサーは利用できません",
@@ -365,6 +372,9 @@ const ja = {
     liveTitle: "地球の高精細ライブストリーミングビデオ",
     liveDescription:
       "現在、地球のライブ映像がISSに取り付けられた外部のHDカメラからストリーミングされています。 カメラは地球の方を向いており、時折太陽パネルが画面を通過します。",
+    details: {
+      title: "国際宇宙ステーション - 詳細",
+    },
     tabs: {
       news: "ニュース",
       about: "ABOUT",

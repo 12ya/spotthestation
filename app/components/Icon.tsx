@@ -155,6 +155,7 @@ export const iconRegistry = {
   edit: require("../../assets/icons/edit.png"),
   refresh: require("../../assets/icons/refresh.png"),
   calibration: require("../../assets/icons/calibration.png"),
+  information: require("../../assets/icons/information.png"),
 }
 
 const styles: StyleFn = () => {

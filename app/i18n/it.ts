@@ -193,7 +193,7 @@ const it = {
       "Non hai permesso l'uso della fotocamera del telefono. Clicca qui per consentire.",
     issCaptured: "Catturare questo momento",
     details: {
-      title: "Stazione Spaziale Internazionale - Dettagli",
+      title: "Informazioni",
       orbitalSpeed: "Velocità orbitale",
       longitude: "Longitudine",
       latitude: "Latitudine",
@@ -206,6 +206,13 @@ const it = {
       orbitalPeriod: "Periodo orbitale",
       orbitsPerDay: "Orbite/Giorno",
       dimensionsValue: "109m di larghezza x 73m di lunghezza x 14m di altezza",
+      dateTime: "Data e Ora",
+      maxHeight: "Altezza Massima",
+      duration: "Durata sopra l'Orizzonte",
+      appears: "Compare",
+      disappears: "Scompare",
+      distance: "Distanza",
+      nextSighting: "Prossima Avvistamento",
     },
     arNotSupported: "AR non è supportato su questo dispositivo",
     noOrientationSensor: "Sensore di orientamento non disponibile",
@@ -369,6 +376,9 @@ const it = {
     liveTitle: "Video in diretta ad alta definizione della Terra",
     liveDescription:
       "Attualmente, un video in diretta della Terra viene trasmesso da una telecamera HD esterna montata sulla ISS. La telecamera è rivolta verso la Terra con un pannello solare occasionale che attraversa la vista.",
+    details: {
+      title: "Stazione Spaziale Internazionale - Dettagli",
+    },
     tabs: {
       news: "Notizie",
       about: "Informazioni",

@@ -26,6 +26,7 @@ import { translate } from "../../../i18n"
 import i18n from "i18n-js"
 import { navigationRef } from "../../../navigators/navigationUtilities"
 import { getCalendars } from "expo-localization"
+import { useCurrentSighting } from "../../../utils/useCurrentSighting"
 
 export interface HomeScreenRouteProps {
   showSightings: boolean
@@ -106,48 +107,7 @@ export const HomeScreen = observer(function HomeScreen() {
     return () => backHandler.remove()
   }, [])
 
-  const events = useMemo(
-    () => current?.sightings?.filter((item) => item.notify) || [],
-    [current?.sightings],
-  )
-  const eventsList = useMemo(
-    () => (events?.length ? events : current?.sightings || []),
-    [current?.sightings, events],
-  )
-
-  const [currentSightingIdx, setCurrentSightingIdx] = useState(-1)
-
-  const updateCurrentSighting = useCallback(() => {
-    const idx = eventsList.findIndex(
-      (sighting) =>
-        new Date(sighting.date) >
-        new Date(new Date().getTime() - Math.max(sighting.visible, 30) * 60 * 1000),
-    )
-
-    setCurrentSightingIdx(idx)
-  }, [eventsList])
-
-  useEffect(() => {
-    updateCurrentSighting()
-  }, [eventsList])
-
-  const currentSighting = useMemo(
-    () =>
-      eventsList.length > currentSightingIdx && eventsList[currentSightingIdx]
-        ? eventsList[currentSightingIdx]
-        : {
-            date: null,
-            visible: 0,
-            maxHeight: 0,
-            minAzimuth: 0,
-            maxAzimuth: 0,
-            minAltitude: 0,
-            maxAltitude: 0,
-            notify: false,
-            dayStage: 0,
-          },
-    [currentSightingIdx, eventsList],
-  )
+  const currentSighting = useCurrentSighting(current)
 
   useEffect(() => {
     if (!location || !issData?.length) return undefined
@@ -175,14 +135,6 @@ export const HomeScreen = observer(function HomeScreen() {
       if (!currentSighting.date) {
         setCountdown("- 00:00:00:00")
         setIsCurrentSightingLoaded(true)
-        return
-      }
-
-      if (
-        new Date().getTime() - new Date(currentSighting.date).getTime() >
-        Math.max(currentSighting.visible, 30) * 60 * 1000
-      ) {
-        updateCurrentSighting()
         return
       }
 

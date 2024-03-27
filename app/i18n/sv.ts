@@ -189,7 +189,7 @@ const sv = {
       "Du har inte beviljat tillgång till telefonens kamera, klicka här för att bevilja åtkomst till telefonens kameror.",
     issCaptured: "Fånga detta ögonblick",
     details: {
-      title: "Internationella rymdstationen - Detaljer",
+      title: "Information",
       orbitalSpeed: "Omloppshastighet",
       longitude: "Longitud",
       latitude: "Latitud",
@@ -202,6 +202,13 @@ const sv = {
       orbitalPeriod: "Omloppsperiod",
       orbitsPerDay: "Omlopp/dag",
       dimensionsValue: "109 m bred x 73 m lång x 14 m lång",
+      dateTime: "Datum och Tid",
+      maxHeight: "Maxhöjd",
+      duration: "Varaktighet Ovan Horisonten",
+      appears: "Dyker upp",
+      disappears: "Försvinner",
+      distance: "Avstånd",
+      nextSighting: "Nästa Siktning",
     },
     arNotSupported: "AR stöds inte på den här enheten",
     noOrientationSensor: "Orienteringssensor är inte tillgänglig",
@@ -364,6 +371,9 @@ const sv = {
     liveTitle: "Högupplöst live-strömning av jorden",
     liveDescription:
       "För närvarande sänds livevideo av jorden från ett externt HD-kamera monterad på ISS. Kameran tittar mot jorden med en ibland passerande solpanel.",
+    details: {
+      title: "Internationella rymdstationen - Detaljer",
+    },
     tabs: {
       news: "Nyheter",
       about: "Om",

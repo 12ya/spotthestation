@@ -192,7 +192,7 @@ const nl = {
       "U heeft geen toestemming gegeven voor het gebruik van de camera van uw telefoon. Klik hier om toe te staan.",
     issCaptured: "Leg dit moment vast",
     details: {
-      title: "International Space Station - Details",
+      title: "Informatie",
       orbitalSpeed: "Orbitale snelheid",
       longitude: "Lengtegraad",
       latitude: "Breedtegraad",
@@ -205,6 +205,13 @@ const nl = {
       orbitalPeriod: "Omlooptijd",
       orbitsPerDay: "Banen/dag",
       dimensionsValue: "109m breed x 73m lang x 14m hoog",
+      dateTime: "Datum en Tijd",
+      maxHeight: "Maximale Hoogte",
+      duration: "Duur Boven Horizon",
+      appears: "Verschijnt",
+      disappears: "Verdwijnt",
+      distance: "Afstand",
+      nextSighting: "Volgende Waarneming",
     },
     arNotSupported: "AR wordt niet ondersteund op dit apparaat",
     noOrientationSensor: "Orientatiesensor niet beschikbaar",
@@ -368,6 +375,9 @@ const nl = {
     liveTitle: "High Definition Live Streaming Video van de Aarde",
     liveDescription:
       "Momenteel wordt live video van de Aarde gestreamd vanaf een externe HD-camera gemonteerd op het ISS. De camera kijkt naar de Aarde met af en toe een zonnepaneel dat door het beeld passeert.",
+    details: {
+      title: "International Space Station - Details",
+    },
     tabs: {
       news: "Nieuws",
       about: "Over ons",

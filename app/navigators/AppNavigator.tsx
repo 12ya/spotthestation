@@ -13,8 +13,8 @@ import {
 import { createNativeStackNavigator } from "@react-navigation/native-stack"
 import { StackScreenProps } from "@react-navigation/stack"
 import { observer } from "mobx-react-lite"
-import React, { useEffect } from "react"
-import { useColorScheme } from "react-native"
+import React, { useEffect, useRef } from "react"
+import { AppState, Platform, useColorScheme } from "react-native"
 import * as storage from "../utils/storage"
 import Config from "../config"
 import { TabNavigator, TabParamList } from "./TabNavigator"
@@ -24,6 +24,8 @@ import { SettingsNavigator, SettingsParamList } from "./SettingsNavigation"
 import { ResourcesNavigator, ResourcesParamList } from "./ResourcesNavigator"
 import Snackbar from "react-native-snackbar"
 import { translate } from "../i18n"
+import * as notifications from "../utils/notifications"
+import notifee, { EventType } from "@notifee/react-native"
 
 /**
  * This type allows TypeScript to know what routes are defined in this navigator
@@ -60,11 +62,18 @@ export type AppStackScreenProps<T extends keyof AppStackParamList> = StackScreen
 const Stack = createNativeStackNavigator<AppStackParamList>()
 
 const AppStack = observer(function AppStack() {
+  const prevAppState = useRef<string>()
+
   useEffect(() => {
-    storage
-      .load("isSettingsCompleted")
-      .then((res) => {
-        if (res) skipOnboarding()
+    Promise.all([storage.load("isSettingsCompleted"), notifications.hasInitialNotification()])
+      .then(([isSettingsCompleted, hasInitialNotification]) => {
+        if (isSettingsCompleted) skipOnboarding()
+        if (hasInitialNotification) {
+          navigationRef.navigate(
+            "Main" as never,
+            { screen: "ISSView", params: { info: true } } as never,
+          )
+        }
       })
       .catch((err) =>
         Snackbar.show({
@@ -79,6 +88,40 @@ const AppStack = observer(function AppStack() {
           },
         }),
       )
+
+    if (Platform.OS === "android") {
+      const subscription = AppState.addEventListener("change", (nextAppState) => {
+        if (
+          nextAppState === "active" &&
+          prevAppState.current &&
+          prevAppState.current !== nextAppState
+        )
+          notifications
+            .hasInitialNotification()
+            .then((hasInitialNotification) => {
+              if (hasInitialNotification)
+                navigationRef.navigate(
+                  "Main" as never,
+                  { screen: "ISSView", params: { info: true } } as never,
+                )
+            })
+            .catch((e) => console.error(e))
+        prevAppState.current = nextAppState
+      })
+
+      return () => {
+        subscription.remove()
+      }
+    } else {
+      return notifee.onForegroundEvent(({ type }) => {
+        if (type === EventType.PRESS) {
+          navigationRef.navigate(
+            "Main" as never,
+            { screen: "ISSView", params: { info: true } } as never,
+          )
+        }
+      })
+    }
   }, [])
 
   return (

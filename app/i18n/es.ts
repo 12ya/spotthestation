@@ -193,7 +193,7 @@ const es = {
       "No has permitido el uso de la cámara de tu teléfono. Haz clic aquí para permitirlo.",
     issCaptured: "Captura este momento",
     details: {
-      title: "Estación Espacial Internacional - Detalles",
+      title: "Información",
       orbitalSpeed: "Velocidad orbital",
       longitude: "Longitud",
       latitude: "Latitud",
@@ -206,6 +206,13 @@ const es = {
       orbitalPeriod: "Periodo orbital",
       orbitsPerDay: "Órbitas por día",
       dimensionsValue: "109m de ancho x 73m de largo x 14m de alto",
+      dateTime: "Fecha y Hora",
+      maxHeight: "Altura Máxima",
+      duration: "Duración sobre el Horizonte",
+      appears: "Aparece",
+      disappears: "Desaparece",
+      distance: "Distancia",
+      nextSighting: "Próxima avistamiento",
     },
     arNotSupported: "La realidad aumentada (RA) no es compatible con este dispositivo",
     noOrientationSensor: "El sensor de orientación no está disponible",
@@ -369,6 +376,9 @@ const es = {
     liveTitle: "Video de transmisión en vivo de alta definición de la Tierra",
     liveDescription:
       "Actualmente, se está transmitiendo un video en vivo de la Tierra desde una cámara HD externa montada en la ISS. La cámara está mirando hacia la Tierra con un panel solar ocasional pasando por la vista.",
+    details: {
+      title: "Estación Espacial Internacional - Detalles",
+    },
     tabs: {
       news: "Noticias",
       about: "Acerca de la estación",

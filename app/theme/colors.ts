@@ -47,6 +47,7 @@ const palette = {
 
   overlay20: "rgba(25, 16, 21, 0.2)",
   overlay50: "rgba(25, 16, 21, 0.5)",
+  overlay80: "rgba(25, 16, 21, 0.8)",
   overlayBlue: "rgba(11, 61, 145, 0.25)",
   overlayWhite: "rgba(255, 255, 255, 0.2)",
 }

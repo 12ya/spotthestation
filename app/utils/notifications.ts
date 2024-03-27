@@ -31,6 +31,10 @@ export function initialize() {
   }
 }
 
+export async function hasInitialNotification() {
+  return Boolean(await notifee.getInitialNotification())
+}
+
 export async function setNotifications(locations: LocationType[]) {
   const start = new Date((await storage.load("muteFrom")) as string)
   const end = new Date((await storage.load("muteUntil")) as string)

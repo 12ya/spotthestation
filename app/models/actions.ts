@@ -88,12 +88,17 @@ const RootStoreActions = (self) => ({
       return true
     }
 
+    const hasMaxHeight = (item: ISSSighting, maxHeight: string) => {
+      return item.maxHeight >= Number(maxHeight)
+    }
+
     return location.sightings.filter((item) => {
       return (
         new Date(item.date) >
           new Date(new Date().getTime() - Math.max(item.visible, 30) * 60 * 1000) &&
         (location.filterTimeOfDay === "" || String(item.dayStage) === location.filterTimeOfDay) &&
-        (location.filterDuration === "" || hasDuration(item, location.filterDuration))
+        (location.filterDuration === "" || hasDuration(item, location.filterDuration)) &&
+        (location.filterMaxHeight === "" || hasMaxHeight(item, location.filterMaxHeight))
       )
     })
   },
@@ -117,6 +122,21 @@ const RootStoreActions = (self) => ({
     const updated = {
       ...location,
       filterDuration: value,
+    }
+
+    const filtered = self.getFilteredSightings(updated)
+    updated.sightings.forEach((sighting) => {
+      if (!filtered.includes(sighting) && new Date(sighting.date) > new Date())
+        sighting.notify = false
+    })
+
+    return self.setISSSightings(updated) as LocationType
+  },
+
+  setSightingsMaxHeight: (location: LocationType, value: string) => {
+    const updated = {
+      ...location,
+      filterMaxHeight: value,
     }
 
     const filtered = self.getFilteredSightings(updated)

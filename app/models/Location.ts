@@ -15,6 +15,7 @@ export const Location = types.model("Location", {
   lastUpdatedAt: types.maybeNull(types.string),
   filterTimeOfDay: types.optional(types.string, ""),
   filterDuration: types.optional(types.string, ""),
+  filterMaxHeight: types.optional(types.string, ""),
   googlePlaceId: types.optional(types.string, ""),
   osmPlaceId: types.optional(types.string, ""),
   timezone: types.optional(types.string, ""),

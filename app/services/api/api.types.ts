@@ -43,6 +43,7 @@ export interface LocationType {
   lastUpdatedAt?: string
   filterTimeOfDay?: string
   filterDuration?: string
+  filterMaxHeight?: string
   timezone?: string
 }
 

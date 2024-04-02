@@ -62,6 +62,7 @@ export const LocationSettingsScreen = observer(function LocationSettingsScreen()
     setNotifications,
     setSightingsTimeOfDay,
     setSightingsDuration,
+    setSightingsMaxHeight,
     getFilteredSightings,
     getISSSightings,
     trajectoryError,
@@ -241,6 +242,13 @@ export const LocationSettingsScreen = observer(function LocationSettingsScreen()
     [current],
   )
 
+  const handleChangeMaxHeight = useCallback(
+    (value: string) => {
+      setSightingsMaxHeight(current, value)
+    },
+    [current],
+  )
+
   const headerStyle = { ...$headerStyleOverride }
   headerStyle.top = Number(headerStyle.top) + topInset
 
@@ -383,8 +391,10 @@ export const LocationSettingsScreen = observer(function LocationSettingsScreen()
           sightings={current ? getFilteredSightings(current) : []}
           timeOfDay={current?.filterTimeOfDay || ""}
           duration={current?.filterDuration || ""}
+          maxHeight={current?.filterMaxHeight || ""}
           onTimeOfDayChange={handleChangeTimeOfDay}
           onDurationChange={handleChangeDuration}
+          onMaxHeightChange={handleChangeMaxHeight}
           onToggle={handleSetSightingNotification}
           onToggleAll={handleSetSightingNotificationToAll}
           isUS={i18n.locale === "en"}

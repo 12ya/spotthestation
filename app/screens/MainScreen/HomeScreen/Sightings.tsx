@@ -29,8 +29,10 @@ export interface SightingsProps {
   lastSightingOrbitPointAt?: string
   timeOfDay: string
   duration: string
+  maxHeight: string
   onTimeOfDayChange: (value: string) => void
   onDurationChange: (value: string) => void
+  onMaxHeightChange: (value: string) => void
 }
 
 const $dropdownIcon: ViewStyle = { height: 43, justifyContent: "center" }
@@ -52,8 +54,10 @@ export function Sightings({
   lastSightingOrbitPointAt,
   timeOfDay,
   duration,
+  maxHeight,
   onTimeOfDayChange,
   onDurationChange,
+  onMaxHeightChange,
 }: SightingsProps) {
   const {
     $modalBodyContainer,
@@ -120,6 +124,36 @@ export function Sightings({
       },
     ],
     [i18n.locale],
+  )
+
+  const heightOptions = useMemo(
+    () => [
+      {
+        label: translate("homeScreen.selectSightings.all"),
+        value: "",
+      },
+      {
+        label: ">15°",
+        value: "15",
+      },
+      {
+        label: ">30°",
+        value: "30",
+      },
+      {
+        label: ">45°",
+        value: "45",
+      },
+      {
+        label: ">60°",
+        value: "60",
+      },
+      {
+        label: ">75°",
+        value: "75",
+      },
+    ],
+    [],
   )
 
   const $marginTop = useSafeAreaInsetsStyle(["top"], "margin")
@@ -222,6 +256,14 @@ export function Sightings({
           value={timeOfDay}
           onChange={({ value }) => onTimeOfDayChange(value)}
         />
+        <SightingsFilterDropdown
+          title="homeScreen.selectSightings.maxHeight"
+          options={heightOptions}
+          value={maxHeight}
+          onChange={({ value }) => onMaxHeightChange(value)}
+        />
+      </View>
+      <View style={$filtersContainer}>
         <SightingsFilterDropdown
           title="homeScreen.selectSightings.duration"
           options={durationOptions}

@@ -17,8 +17,10 @@ describe("Sightings", () => {
       <Sightings
         timeOfDay=""
         duration=""
+        maxHeight=""
         onDurationChange={jest.fn()}
         onTimeOfDayChange={jest.fn()}
+        onMaxHeightChange={jest.fn()}
         sightings={[
           {
             date: "2020-12-12T10:10:10",

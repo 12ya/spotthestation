@@ -89,6 +89,8 @@ export function Icon(props: IconProps) {
 }
 
 export const iconRegistry = {
+  arActive: require("../../assets/icons/ar-active.png"),
+  arInactive: require("../../assets/icons/ar-active.png"),
   back: require("../../assets/icons/back.png"),
   bell: require("../../assets/icons/bell.png"),
   caretLeft: require("../../assets/icons/caretLeft.png"),
@@ -104,6 +106,8 @@ export const iconRegistry = {
   more: require("../../assets/icons/more.png"),
   pin: require("../../assets/icons/pin.png"),
   settings: require("../../assets/icons/settings.png"),
+  settingsActive: require("../../assets/icons/settings-active.png"),
+  settingsInactive: require("../../assets/icons/settings-inactive.png"),
   view: require("../../assets/icons/view.png"),
   x: require("../../assets/icons/x.png"),
   brandFacebook: require("../../assets/icons/brand-facebook.png"),
@@ -126,8 +130,10 @@ export const iconRegistry = {
   user: require("../../assets/icons/user.png"),
   xCircle: require("../../assets/icons/x-circle.png"),
   chevronDown: require("../../assets/icons/chevron-down.png"),
-  book: require("../../assets/icons/book.png"),
-  home: require("../../assets/icons/home.png"),
+  bookActive: require("../../assets/icons/book-active.png"),
+  bookInactive: require("../../assets/icons/book-inactive.png"),
+  homeActive: require("../../assets/icons/home-active.png"),
+  homeInactive: require("../../assets/icons/home-inactive.png"),
   emailVerify: require("../../assets/icons/email-verify.png"),
   emailVerified: require("../../assets/icons/email-verified.png"),
   clock: require("../../assets/icons/clock.png"),
@@ -156,6 +162,8 @@ export const iconRegistry = {
   refresh: require("../../assets/icons/refresh.png"),
   calibration: require("../../assets/icons/calibration.png"),
   information: require("../../assets/icons/information.png"),
+  trackerActive: require("../../assets/icons/tracker-active.png"),
+  trackerInactive: require("../../assets/icons/tracker-inactive.png"),
 }
 
 const styles: StyleFn = () => {

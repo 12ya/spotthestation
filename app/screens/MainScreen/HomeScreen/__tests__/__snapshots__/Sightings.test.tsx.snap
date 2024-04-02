@@ -479,6 +479,179 @@ exports[`Sightings renders correctly 1`] = `
       }
     >
       <Text
+        accessibilityHint="homeScreen.selectSightings.maxHeight"
+        accessibilityLabel="title"
+        accessibilityRole="text"
+        accessible={true}
+        allowFontScaling={false}
+        style={
+          [
+            {},
+            [
+              {
+                "fontSize": 23,
+                "lineHeight": 35,
+              },
+              {
+                "fontFamily": "Helvetica Neue",
+              },
+              {
+                "color": "#191015",
+              },
+            ],
+            undefined,
+            undefined,
+            {
+              "color": "#ADADAE",
+              "fontFamily": "Helvetica Neue",
+              "fontSize": 19,
+              "lineHeight": 23,
+              "textTransform": "uppercase",
+            },
+          ]
+        }
+      >
+        homeScreen.selectSightings.maxHeight undefined
+      </Text>
+      <View
+        onLayout={[Function]}
+        style={
+          {
+            "backgroundColor": "#353739",
+            "borderRadius": 40,
+            "height": 80,
+            "justifyContent": "center",
+            "marginTop": 15,
+            "overflow": "hidden",
+          }
+        }
+      >
+        <View
+          accessibilityLabel="select"
+          accessibilityState={
+            {
+              "busy": undefined,
+              "checked": undefined,
+              "disabled": undefined,
+              "expanded": undefined,
+              "selected": undefined,
+            }
+          }
+          accessible={true}
+          focusable={true}
+          onClick={[Function]}
+          onResponderGrant={[Function]}
+          onResponderMove={[Function]}
+          onResponderRelease={[Function]}
+          onResponderTerminate={[Function]}
+          onResponderTerminationRequest={[Function]}
+          onStartShouldSetResponder={[Function]}
+          style={
+            {
+              "alignItems": "center",
+              "flexDirection": "row",
+              "height": 35,
+              "justifyContent": "space-between",
+            }
+          }
+        >
+          <Text
+            style={
+              [
+                {
+                  "flex": 1,
+                  "fontSize": 16,
+                },
+                [
+                  {
+                    "color": "#DEDDDE",
+                    "fontFamily": "Helvetica Neue",
+                    "fontSize": 26,
+                    "paddingHorizontal": 0,
+                    "paddingVertical": 0,
+                  },
+                  {
+                    "alignItems": "center",
+                    "alignSelf": "center",
+                    "color": "#DEDDDE",
+                    "justifyContent": "center",
+                    "marginHorizontal": 17,
+                    "textAlignVertical": "center",
+                  },
+                ],
+                {},
+              ]
+            }
+          >
+            homeScreen.selectSightings.all undefined
+          </Text>
+          <View
+            style={
+              {
+                "alignItems": "center",
+                "height": 80,
+                "justifyContent": "center",
+                "marginRight": 17,
+              }
+            }
+          >
+            <RCTImageView
+              accessibilityState={
+                {
+                  "busy": undefined,
+                  "checked": undefined,
+                  "disabled": undefined,
+                  "expanded": undefined,
+                  "selected": undefined,
+                }
+              }
+              internal_analyticTag={null}
+              resizeMode="contain"
+              source={
+                [
+                  {
+                    "height": undefined,
+                    "uri": undefined,
+                    "width": undefined,
+                  },
+                ]
+              }
+              style={
+                {
+                  "height": 40,
+                  "overflow": "hidden",
+                  "resizeMode": "contain",
+                  "tintColor": "#ADADAE",
+                  "width": 40,
+                }
+              }
+              tintColor="#ADADAE"
+            />
+          </View>
+        </View>
+      </View>
+    </View>
+  </View>
+  <View
+    style={
+      {
+        "flexDirection": "row",
+        "justifyContent": "space-between",
+        "marginHorizontal": -7,
+        "paddingHorizontal": 52,
+        "paddingTop": 29,
+      }
+    }
+  >
+    <View
+      style={
+        {
+          "flex": 1,
+          "marginHorizontal": 7,
+        }
+      }
+    >
+      <Text
         accessibilityHint="homeScreen.selectSightings.duration"
         accessibilityLabel="title"
         accessibilityRole="text"

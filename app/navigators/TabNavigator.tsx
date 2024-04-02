@@ -56,7 +56,8 @@ export function TabNavigator() {
   )
 
   const getTabStyle = (focused: boolean, color: string) => ({
-    color: focused ? color : "transparent",
+    color: focused ? color : colors.palette.neutral450,
+    fontWeight: (focused ? "500" : "400") as TextStyle["fontWeight"],
   })
 
   return (
@@ -84,7 +85,9 @@ export function TabNavigator() {
             tabBarLabel: ({ focused, color }) => (
               <Text tx="tabNavigator.homeTab" style={[$tab, getTabStyle(focused, color)]} />
             ),
-            tabBarIcon: ({ color, size }) => <Icon icon="home" color={color} size={size} />,
+            tabBarIcon: ({ focused, color, size }) => (
+              <Icon icon={focused ? "homeActive" : "homeInactive"} color={color} size={size} />
+            ),
             unmountOnBlur: true,
           }}
         />
@@ -96,7 +99,9 @@ export function TabNavigator() {
             tabBarLabel: ({ focused, color }) => (
               <Text tx="tabNavigator.issViewTab" style={[$tab, getTabStyle(focused, color)]} />
             ),
-            tabBarIcon: ({ color, size }) => <Icon icon="globe" color={color} size={size} />,
+            tabBarIcon: ({ focused, color, size }) => (
+              <Icon icon={focused ? "arActive" : "arInactive"} color={color} size={size} />
+            ),
             unmountOnBlur: true,
           }}
         />
@@ -108,7 +113,13 @@ export function TabNavigator() {
             tabBarLabel: ({ focused, color }) => (
               <Text tx="tabNavigator.issNowTab" style={[$tab, getTabStyle(focused, color)]} />
             ),
-            tabBarIcon: ({ color, size }) => <Icon icon="tv" color={color} size={size} />,
+            tabBarIcon: ({ focused, color, size }) => (
+              <Icon
+                icon={focused ? "trackerActive" : "trackerInactive"}
+                color={color}
+                size={size}
+              />
+            ),
             unmountOnBlur: true,
           }}
         />
@@ -120,7 +131,9 @@ export function TabNavigator() {
             tabBarLabel: ({ focused, color }) => (
               <Text tx="tabNavigator.resourcesTab" style={[$tab, getTabStyle(focused, color)]} />
             ),
-            tabBarIcon: ({ color, size }) => <Icon icon="book" color={color} size={size} />,
+            tabBarIcon: ({ focused, color, size }) => (
+              <Icon icon={focused ? "bookActive" : "bookInactive"} color={color} size={size} />
+            ),
             unmountOnBlur: true,
           }}
         />
@@ -132,7 +145,13 @@ export function TabNavigator() {
             tabBarLabel: ({ focused, color }) => (
               <Text tx="tabNavigator.settingsTab" style={[$tab, getTabStyle(focused, color)]} />
             ),
-            tabBarIcon: ({ color, size }) => <Icon icon="settings" color={color} size={size} />,
+            tabBarIcon: ({ focused, color, size }) => (
+              <Icon
+                icon={focused ? "settingsActive" : "settingsInactive"}
+                color={color}
+                size={size}
+              />
+            ),
             unmountOnBlur: true,
           }}
         />
@@ -164,7 +183,7 @@ const styles: StyleFn = ({ scale, fontSizes }) => {
   const $tab: TextStyle = {
     textTransform: "uppercase",
     fontSize: fontSizes[12],
-    marginTop: -scale(20),
+    marginTop: -scale(12),
   }
 
   return { $tabBar, $tabBarItem, $tabBarPortrait, $tabBarLandscape, $tab }

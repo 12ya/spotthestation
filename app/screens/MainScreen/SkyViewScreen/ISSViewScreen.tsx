@@ -225,16 +225,16 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
   const [still, setStill] = useState(false)
   const [isSupported, setIsSupported] = useState(false)
   const [isCalibrated, setIsCalibrated] = useState(false)
-  const [isCalibrationModalVisible, setIsCalibrationModalVisible] = useState(false)
   const [tutorialItemsLayout, setTutorialItemsLayout] = useState<TutorialItemsLayout>({})
   const [isTutorialFullyVisible, setIsTutorialFullyVisible] = useState(false)
+  const [arCoachCompleted, setArCoachCompleted] = useState<boolean | null>(null)
 
   useEffect(() => {
-    if (route.params?.info) {
-      requestOpenModal("details")
-      navigation.setParams({ info: undefined } as never)
-    }
-  }, [route.params])
+    storage
+      .load("arCoachCompleted")
+      .then((completed) => setArCoachCompleted(Boolean(completed)))
+      .catch(() => setArCoachCompleted(true))
+  }, [])
 
   const current = useMemo(
     () => selectedLocation || currentLocation,
@@ -331,7 +331,7 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
       if (accuracy === 2) {
         setIsCalibrated(true)
       } else {
-        setIsCalibrationModalVisible(true)
+        requestOpenModal("calibration")
       }
       unsub()
     })
@@ -340,7 +340,7 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
   }, [isSupported])
 
   const handleCalibrationFinish = () => {
-    setIsCalibrationModalVisible(false)
+    requestCloseModal("calibration")
     setIsCalibrated(true)
   }
 
@@ -622,20 +622,26 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
   const isActive = isCameraAllowed && issData?.length > 0 && isSupported && isCalibrated
 
   useEffect(() => {
-    if (isActive && Object.keys(tutorialItemsLayout).length === totalTutorialStages) {
-      storage
-        .load("arCoachCompleted")
-        .then((arCoachCompleted) => {
-          if (arCoachCompleted) requestCloseModal("arCoach")
-          else requestOpenModal("arCoach")
-        })
-        .catch(console.error)
+    if (
+      arCoachCompleted === false &&
+      isActive &&
+      Object.keys(tutorialItemsLayout).length === totalTutorialStages
+    ) {
+      requestOpenModal("arCoach")
     }
-  }, [isActive, tutorialItemsLayout])
+  }, [arCoachCompleted, isActive, tutorialItemsLayout])
+
+  useEffect(() => {
+    if (arCoachCompleted === true && isActive && route.params?.info) {
+      requestOpenModal("details")
+      navigation.setParams({ info: undefined } as never)
+    }
+  }, [arCoachCompleted, isActive, route.params])
 
   const handleSetCoachCompleted = async () => {
     requestCloseModal("arCoach")
     await storage.save("arCoachCompleted", true)
+    setArCoachCompleted(true)
   }
 
   const handleTutorialItemLayout = useCallback(
@@ -839,27 +845,27 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
         />
       </Modal>
 
-      {isSupported && (
-        <Modal
-          isVisible={isCalibrationModalVisible}
-          onBackdropPress={handleCalibrationFinish}
-          onSwipeComplete={handleCalibrationFinish}
-          animationIn="slideInUp"
-          animationOut="slideOutDown"
-          swipeDirection="down"
-          useNativeDriver
-          useNativeDriverForBackdrop
-          hideModalContentWhileAnimating
-          propagateSwipe
-          backdropOpacity={0.65}
-          style={[$modal, $calibrateModal]}
-        >
+      <MyModal
+        name="calibration"
+        onBackdropPress={handleCalibrationFinish}
+        onSwipeComplete={handleCalibrationFinish}
+        animationIn="slideInUp"
+        animationOut="slideOutDown"
+        swipeDirection="down"
+        useNativeDriver
+        useNativeDriverForBackdrop
+        hideModalContentWhileAnimating
+        propagateSwipe
+        backdropOpacity={0.65}
+        style={[$modal, $calibrateModal]}
+      >
+        {isSupported && (
           <CalibrateCompassModal
             onClose={handleCalibrationFinish}
             onHighAccuracy={handleCalibrationFinish}
           />
-        </Modal>
-      )}
+        )}
+      </MyModal>
 
       <MyModal
         name="trajectoryError"

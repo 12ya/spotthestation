@@ -56,6 +56,7 @@ export const NotificationSettingsScreen = observer(function NotificationSettings
     setSavedLocations,
     setSightingsTimeOfDay,
     setSightingsDuration,
+    setSightingsMaxHeight,
     getFilteredSightings,
   } = useStores()
   const topInset = useSafeAreaInsets().top
@@ -195,6 +196,13 @@ export const NotificationSettingsScreen = observer(function NotificationSettings
   const handleChangeDuration = useCallback(
     (value: string) => {
       setSightingsDuration(current, value)
+    },
+    [current],
+  )
+
+  const handleChangeMaxHeight = useCallback(
+    (value: string) => {
+      setSightingsMaxHeight(current, value)
     },
     [current],
   )
@@ -381,8 +389,10 @@ export const NotificationSettingsScreen = observer(function NotificationSettings
             sightings={current ? getFilteredSightings(current) : []}
             timeOfDay={current?.filterTimeOfDay || ""}
             duration={current?.filterDuration || ""}
+            maxHeight={current?.filterMaxHeight || ""}
             onTimeOfDayChange={handleChangeTimeOfDay}
             onDurationChange={handleChangeDuration}
+            onMaxHeightChange={handleChangeMaxHeight}
             onToggle={handleSetSightingNotification}
             onToggleAll={handleSetSightingNotificationToAll}
             isUS={i18n.locale === "en"}

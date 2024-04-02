@@ -71,6 +71,7 @@ export const HomeScreen = observer(function HomeScreen() {
     requestOpenModal,
     setSightingsTimeOfDay,
     setSightingsDuration,
+    setSightingsMaxHeight,
     getFilteredSightings,
   } = useStores()
   const intervalRef = useRef<NodeJS.Timeout>(null)
@@ -284,6 +285,13 @@ export const HomeScreen = observer(function HomeScreen() {
     [current],
   )
 
+  const handleChangeMaxHeight = useCallback(
+    (value: string) => {
+      setSightingsMaxHeight(current, value)
+    },
+    [current],
+  )
+
   const formatedDate = (date: string): string => {
     const timeFormat = getCalendars()[0].uses24hourClock ? "H:mm" : "h:mm aa"
     const timezone = current?.timezone || getCurrentTimeZone()
@@ -353,8 +361,10 @@ export const HomeScreen = observer(function HomeScreen() {
           sightings={current ? getFilteredSightings(current) : []}
           timeOfDay={current?.filterTimeOfDay || ""}
           duration={current?.filterDuration || ""}
+          maxHeight={current?.filterMaxHeight || ""}
           onTimeOfDayChange={handleChangeTimeOfDay}
           onDurationChange={handleChangeDuration}
+          onMaxHeightChange={handleChangeMaxHeight}
           onToggle={handleSetSightingNotification}
           onToggleAll={handleSetSightingNotificationToAll}
           isUS={i18n.locale === "en"}

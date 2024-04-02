@@ -218,6 +218,31 @@ const it = {
     noOrientationSensor: "Sensore di orientamento non disponibile",
     noMagnetometerSensor: "Il magnetometro non è disponibile",
     screenshotError: "Impossibile catturare lo screenshot",
+    coachMarks: {
+      circleTitle: "Individua la Stazione",
+      circleData:
+        "Per individuare la stazione, muovi il tuo telefono nella direzione della freccia al di fuori del cerchio. Man mano che ti avvicini, il colore del cerchio diventerà verde.",
+      compassTitle: "Bussola",
+      compassData:
+        "Questa bussola mostra la direzione in cui stai guardando e la direzione relativa in cui puoi individuare la stazione.",
+      infoTitle: "Informazioni",
+      infoData:
+        "Questo interruttore apre o chiude la finestra con informazioni dettagliate sulla visione attuale o successiva e informazioni in tempo reale sulla stazione.",
+      trajectoryTitle: "Traiettoria della Stazione",
+      trajectoryData:
+        "Questo interruttore attiva o disattiva la traiettoria della stazione sullo schermo. La linea continua mostra il passato e la linea tratteggiata mostra la traiettoria futura della stazione.",
+      arTitle: "Vista AR",
+      arData: "Questo interruttore passa tra la vista AR a schermo intero e parziale.",
+      shareTitle: "Condividi",
+      shareData:
+        "Questo pulsante ti consente di condividere uno screenshot della vista AR tramite messaggio di testo, email o social media.",
+      screenshotTitle: "Cattura Schermo",
+      screenshotData:
+        "Questo pulsante ti consente di catturare uno screenshot della vista AR da salvare nella tua galleria fotografica.",
+      videoTitle: "Registrazione Video",
+      videoData:
+        "Questo pulsante ti consente di registrare un video della vista AR per catturare i momenti in cui individui la stazione.",
+    },
   },
   settings: {
     header: "Impostazioni",

@@ -1,5 +1,13 @@
 import React, { useState, useEffect } from "react"
-import { View, Text, Image, ViewStyle, ImageStyle, TextStyle } from "react-native"
+import {
+  View,
+  Text,
+  Image,
+  ViewStyle,
+  ImageStyle,
+  TextStyle,
+  LayoutChangeEvent,
+} from "react-native"
 import { useSafeAreaInsets } from "react-native-safe-area-context"
 import { Icon } from "../../../components"
 import { colors } from "../../../theme"
@@ -18,9 +26,10 @@ type CompassProps = {
   issPosition: number
   isFullScreen: boolean
   location: LocationType
+  onLayout: (event: LayoutChangeEvent) => void
 }
 
-export const Compass = ({ issPosition, isFullScreen, location }: CompassProps) => {
+export const Compass = ({ issPosition, isFullScreen, location, onLayout }: CompassProps) => {
   const {
     $container,
     $containerFs,
@@ -61,7 +70,7 @@ export const Compass = ({ issPosition, isFullScreen, location }: CompassProps) =
   if (isFullScreen) container.marginTop = Number(container.marginTop) + topInset
 
   return (
-    <View style={container}>
+    <View style={container} onLayout={onLayout}>
       <Image source={compassLine} style={$line as ImageStyle} />
       {issVisible && (
         <Icon

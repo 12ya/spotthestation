@@ -5,6 +5,8 @@ import {
   Alert,
   AppState,
   BackHandler,
+  LayoutChangeEvent,
+  NativeMethods,
   PermissionsAndroid,
   Platform,
   Pressable,
@@ -53,6 +55,8 @@ import { TrajectoryError } from "../HomeScreen/TrajectoryError"
 import { useSafeAreaInsetsStyle } from "../../../utils/useSafeAreaInsetsStyle"
 import { DetailsModal } from "./DetailsModal"
 import { useNavigation, useRoute } from "@react-navigation/native"
+import * as storage from "../../../utils/storage"
+import { TutorialItemsLayout, Tutorial, totalStages as totalTutorialStages } from "./Tutorial"
 
 function checkCameraPermissions(callback: (value: boolean) => void) {
   if (Platform.OS === "android") {
@@ -222,6 +226,8 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
   const [isSupported, setIsSupported] = useState(false)
   const [isCalibrated, setIsCalibrated] = useState(false)
   const [isCalibrationModalVisible, setIsCalibrationModalVisible] = useState(false)
+  const [tutorialItemsLayout, setTutorialItemsLayout] = useState<TutorialItemsLayout>({})
+  const [isTutorialFullyVisible, setIsTutorialFullyVisible] = useState(false)
 
   useEffect(() => {
     if (route.params?.info) {
@@ -613,6 +619,40 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
   const bottomContainerStyle = { ...$bottomContainerStyleOverride }
   bottomContainerStyle.bottom = Number(bottomContainerStyle.bottom) + bottomInset
 
+  const isActive = isCameraAllowed && issData?.length > 0 && isSupported && isCalibrated
+
+  useEffect(() => {
+    if (isActive && Object.keys(tutorialItemsLayout).length === totalTutorialStages) {
+      storage
+        .load("arCoachCompleted")
+        .then((arCoachCompleted) => {
+          if (arCoachCompleted) requestCloseModal("arCoach")
+          else requestOpenModal("arCoach")
+        })
+        .catch(console.error)
+    }
+  }, [isActive, tutorialItemsLayout])
+
+  const handleSetCoachCompleted = async () => {
+    requestCloseModal("arCoach")
+    await storage.save("arCoachCompleted", true)
+  }
+
+  const handleTutorialItemLayout = useCallback(
+    (item: keyof TutorialItemsLayout) => (event: LayoutChangeEvent) => {
+      event.persist()
+      setTimeout(() => {
+        ;(event.target as unknown as NativeMethods).measureInWindow((x, y, width, height) => {
+          setTutorialItemsLayout((current) => ({
+            ...current,
+            [item]: { width, height, x, y },
+          }))
+        })
+      }, 50)
+    },
+    [],
+  )
+
   return (
     <Screen
       preset="fixed"
@@ -645,7 +685,7 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
         </Pressable>
       ) : (
         <View style={[$body, bodyStyle]}>
-          {issData?.length > 0 && isSupported && isCalibrated && (
+          {isActive && (
             <ViewShot style={$flex}>
               <ARView
                 still={still}
@@ -657,6 +697,8 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
                 issPath={issPath}
                 onTakeScreenshot={takeScreenshot}
                 location={current}
+                onDirectionCircleLayout={handleTutorialItemLayout("circle")}
+                onCompassLayout={handleTutorialItemLayout("compass")}
               />
             </ViewShot>
           )}
@@ -676,6 +718,7 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
                   isLandscape && $mr24,
                 ]}
                 onPress={() => setIsPathVisible(!isPathVisible)}
+                onLayout={handleTutorialItemLayout("trajectory")}
               />
               <IconLinkButton
                 accessible
@@ -688,6 +731,7 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
                   isLandscape && $mr24,
                 ]}
                 onPress={() => setIsFullScreen(true)}
+                onLayout={handleTutorialItemLayout("fullScreen")}
               />
             </View>
             <View
@@ -708,6 +752,7 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
                 icon="information"
                 buttonStyle={[isFullScreen ? $buttonFs : $button, isLandscape && $ml24]}
                 onPress={onDetails}
+                onLayout={handleTutorialItemLayout("info")}
               />
               <IconLinkButton
                 accessible
@@ -716,6 +761,7 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
                 icon="share"
                 buttonStyle={[isFullScreen ? $buttonFs : $button, isLandscape && $ml24]}
                 onPress={onShare}
+                onLayout={handleTutorialItemLayout("share")}
               />
               <IconLinkButton
                 accessible
@@ -728,6 +774,7 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
                   isLandscape && $ml24,
                 ]}
                 onPress={takeScreenshot}
+                onLayout={handleTutorialItemLayout("screenshot")}
               />
               {isRecording ? (
                 <>
@@ -756,6 +803,7 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
                       .catch(console.error)
                   }}
                   buttonStyle={[isFullScreen ? $buttonFs : $button, isLandscape && $ml24]}
+                  onLayout={handleTutorialItemLayout("video")}
                 />
               )}
             </View>
@@ -842,6 +890,23 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
         style={[$modal, Platform.OS === "ios" && $topInsetMargin]}
       >
         <DetailsModal issData={issData} location={current} onClose={closeDetails} />
+      </MyModal>
+
+      <MyModal
+        name="arCoach"
+        useNativeDriver={false}
+        useNativeDriverForBackdrop
+        backdropOpacity={0.4}
+        style={$modal}
+        animationIn="slideInUp"
+        animationOut="slideOutDown"
+        animationInTiming={1}
+        animationOutTiming={1}
+        onModalShow={() => setIsTutorialFullyVisible(true)}
+      >
+        {isTutorialFullyVisible && (
+          <Tutorial itemsLayout={tutorialItemsLayout} onComplete={handleSetCoachCompleted} />
+        )}
       </MyModal>
     </Screen>
   )

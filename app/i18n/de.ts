@@ -219,6 +219,31 @@ const de = {
     noOrientationSensor: "Orientierungssensor nicht verfügbar",
     noMagnetometerSensor: "Magnetometer ist nicht verfügbar",
     screenshotError: "Screenshot kann nicht erstellt werden",
+    coachMarks: {
+      circleTitle: "Station entdecken",
+      circleData:
+        "Um die Station zu entdecken, bewegen Sie Ihr Telefon in Richtung des Pfeils außerhalb des Kreises. Wenn Sie näher kommen, ändert sich die Farbe des Kreises zu Grün.",
+      compassTitle: "Kompass",
+      compassData:
+        "Dieser Kompass zeigt Ihnen die Richtung, in die Sie schauen, und die relative Richtung, in der Sie die Station entdecken können.",
+      infoTitle: "Information",
+      infoData:
+        "Dieser Umschalter öffnet oder schließt das Fenster mit detaillierten Informationen über die aktuelle oder nächste bevorstehende Sichtung sowie Live-Informationen über die Station.",
+      trajectoryTitle: "Bahnberechnung",
+      trajectoryData:
+        "Dieser Umschalter schaltet die Bahnberechnung auf dem Bildschirm ein oder aus. Die durchgezogene Linie zeigt die Vergangenheit und die gestrichelte Linie zeigt die zukünftige Bahn der Station an.",
+      arTitle: "AR-Ansicht",
+      arData: "Dieser Umschalter wechselt zwischen der Vollbild- und Teilansicht der AR.",
+      shareTitle: "Teilen",
+      shareData:
+        "Mit dieser Schaltfläche können Sie einen Screenshot der AR-Ansicht per Textnachricht, E-Mail oder soziale Medien teilen.",
+      screenshotTitle: "Bildschirmfoto",
+      screenshotData:
+        "Mit dieser Schaltfläche können Sie einen Screenshot der AR-Ansicht aufnehmen und in Ihrer Fotogalerie speichern.",
+      videoTitle: "Videoaufzeichnung",
+      videoData:
+        "Mit dieser Schaltfläche können Sie ein Video der AR-Ansicht aufnehmen, um die Momente festzuhalten, in denen Sie die Station entdecken.",
+    },
   },
   settings: {
     header: "Einstellungen",

@@ -220,6 +220,31 @@ const fr = {
     noOrientationSensor: "Capteur d'orientation non disponible",
     noMagnetometerSensor: "Le magnétomètre n'est pas disponible",
     screenshotError: "Impossible de capturer la capture d'écran",
+    coachMarks: {
+      circleTitle: "Repérer la Station",
+      circleData:
+        "Pour repérer la station, déplacez votre téléphone dans la direction de la flèche à l'extérieur du cercle. À mesure que vous vous rapprochez, la couleur du cercle passera au vert.",
+      compassTitle: "Boussole",
+      compassData:
+        "Cette boussole vous indique la direction dans laquelle vous regardez, ainsi que la direction relative dans laquelle vous pouvez repérer la station.",
+      infoTitle: "Information",
+      infoData:
+        "Cet interrupteur ouvre ou ferme la fenêtre avec des informations détaillées sur la prochaine observation en cours ou à venir et des informations en direct sur la station.",
+      trajectoryTitle: "Trajectoire de la Station",
+      trajectoryData:
+        "Cet interrupteur active ou désactive la trajectoire de la station à l'écran. La ligne pleine montre le passé et la ligne en pointillé montre la trajectoire future de la station.",
+      arTitle: "Vue AR",
+      arData: "Cet interrupteur permet de basculer entre les vues AR en plein écran et partielles.",
+      shareTitle: "Partager",
+      shareData:
+        "Ce bouton vous permet de partager une capture d'écran de la vue AR via un message texte, un e-mail ou les médias sociaux.",
+      screenshotTitle: "Capture d'écran",
+      screenshotData:
+        "Ce bouton vous permet de capturer une capture d'écran de la vue AR à enregistrer dans votre galerie de photos.",
+      videoTitle: "Enregistrement vidéo",
+      videoData:
+        "Ce bouton vous permet d'enregistrer une vidéo de la vue AR pour capturer les moments où vous repérez la station.",
+    },
   },
   settings: {
     header: "Paramètres",

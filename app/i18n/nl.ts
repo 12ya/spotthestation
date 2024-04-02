@@ -217,6 +217,31 @@ const nl = {
     noOrientationSensor: "Orientatiesensor niet beschikbaar",
     noMagnetometerSensor: "Magnetometer is niet beschikbaar",
     screenshotError: "Kan geen schermafbeelding maken",
+    coachMarks: {
+      circleTitle: "Spot de Station",
+      circleData:
+        "Om de station te spotten, beweeg je telefoon in de richting van de pijl buiten de cirkel. Naarmate je dichterbij komt, zal de kleur van de cirkel veranderen naar groen.",
+      compassTitle: "Kompas",
+      compassData:
+        "Dit kompas toont je de richting waarin je kijkt, en de relatieve richting waarin je de station kunt spotten.",
+      infoTitle: "Informatie",
+      infoData:
+        "Deze schakelaar opent of sluit het venster met gedetailleerde informatie over de huidige of volgende aanstaande waarneming en live informatie over de station.",
+      trajectoryTitle: "Station Traject",
+      trajectoryData:
+        "Deze schakelaar zet het stationstraject aan of uit het scherm. De volle lijn toont het verleden en de stippellijn toont de toekomstige baan van de station.",
+      arTitle: "AR Weergave",
+      arData: "Deze schakelaar schakelt tussen de volledige scherm- en gedeeltelijke AR-weergaven.",
+      shareTitle: "Delen",
+      shareData:
+        "Met deze knop kun je een screenshot van de AR-weergave delen via sms, e-mail of sociale media.",
+      screenshotTitle: "Schermafbeelding",
+      screenshotData:
+        "Met deze knop kun je een screenshot van de AR-weergave maken om op te slaan in je fotogalerij.",
+      videoTitle: "Videoregistratie",
+      videoData:
+        "Met deze knop kun je een video van de AR-weergave opnemen om de momenten vast te leggen waarop je de station spot.",
+    },
   },
   settings: {
     header: "Instellingen",

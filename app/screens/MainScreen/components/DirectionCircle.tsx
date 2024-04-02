@@ -1,6 +1,6 @@
 import { StyleFn, useStyles } from "../../../utils/useStyles"
 import React, { useEffect, useMemo } from "react"
-import { ViewStyle, View, useWindowDimensions, PixelRatio } from "react-native"
+import { ViewStyle, View, useWindowDimensions, PixelRatio, LayoutChangeEvent } from "react-native"
 import Svg, { Path } from "react-native-svg"
 import { arc as d3Arc } from "d3-shape"
 import { degToRad } from "../../../utils/geometry"
@@ -11,9 +11,15 @@ type DirectionCircleProps = {
   screenX: number
   screenY: number
   setIsSpotted: (value: boolean) => void
+  onLayout: (event: LayoutChangeEvent) => void
 }
 
-export const DirectionCircle = ({ screenX, screenY, setIsSpotted }: DirectionCircleProps) => {
+export const DirectionCircle = ({
+  screenX,
+  screenY,
+  setIsSpotted,
+  onLayout,
+}: DirectionCircleProps) => {
   const { $container, $innerCircle, $outerCircle } = useStyles(styles)
 
   const dimensions = useWindowDimensions()
@@ -82,7 +88,7 @@ export const DirectionCircle = ({ screenX, screenY, setIsSpotted }: DirectionCir
           />
         </Svg>
       )}
-      <Svg style={$outerCircle} width={150} height={150}>
+      <Svg onLayout={onLayout} style={$outerCircle} width={150} height={150}>
         <Path x={75} y={75} d={outerArc} fill="#ffffff44" />
         <Path x={75} y={75} d={viewArc} fill="#fff" />
         {viewDistance === 0 && <Path x={75} y={75} d={alignArc} fill={"#11CE69"} />}

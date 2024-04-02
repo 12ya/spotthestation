@@ -217,6 +217,31 @@ const en = {
     noOrientationSensor: "Orientation sensor is not available",
     noMagnetometerSensor: "Magnetometer is not available",
     screenshotError: "Unable to capture screenshot",
+    coachMarks: {
+      circleTitle: "Spot the Station",
+      circleData:
+        "To spot the station, move your phone in the direction of the arrow outside the circle. As you get closer, the color of the circle will change to green.",
+      compassTitle: "Compass",
+      compassData:
+        "This compass shows you the direction that you are looking at, and the relative direction in which you can spot the station.",
+      infoTitle: "Information",
+      infoData:
+        "This toggle opens or closes the window with detailed information about the current or next upcoming sighting and live information about the station.",
+      trajectoryTitle: "Station Trajectory",
+      trajectoryData:
+        "This toggle turns the station trajectory on or off the screen. The solid line shows the past and the dotted line shows the future trajectory of the station.",
+      arTitle: "AR View",
+      arData: "This toggle switches between the full screen and partial AR views.",
+      shareTitle: "Share",
+      shareData:
+        "This button allows you to share a screenshot of the AR view via text message, email, or social media.",
+      screenshotTitle: "Screen Capture",
+      screenshotData:
+        "This button allows you to capture a screenshot of the AR view to save in your photo gallery.",
+      videoTitle: "Video Recording",
+      videoData:
+        "This button allows you to record a video of the AR view to capture the moments that you spot the station.",
+    },
   },
   settings: {
     header: "Settings",

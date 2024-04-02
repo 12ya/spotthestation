@@ -218,6 +218,31 @@ const es = {
     noOrientationSensor: "El sensor de orientación no está disponible",
     noMagnetometerSensor: "El magnetómetro no está disponible",
     screenshotError: "No se puede capturar la captura de pantalla",
+    coachMarks: {
+      circleTitle: "Avista la estación",
+      circleData:
+        "Para localizar la estación, mueve tu teléfono en la dirección de la flecha fuera del círculo. A medida que te acerques, el color del círculo cambiará a verde.",
+      compassTitle: "Brújula",
+      compassData:
+        "Esta brújula muestra la dirección en la que estás mirando y la dirección relativa en la que puedes localizar la estación.",
+      infoTitle: "Información",
+      infoData:
+        "Este interruptor abre o cierra la ventana con información detallada sobre la observación actual o próxima y la información en vivo sobre la estación.",
+      trajectoryTitle: "Trayectoria de la Estación",
+      trajectoryData:
+        "Este interruptor activa o desactiva la trayectoria de la estación en la pantalla. La línea sólida muestra el pasado y la línea punteada muestra la trayectoria futura de la estación.",
+      arTitle: "Vista de RA",
+      arData: "Este interruptor alterna entre vistas de RA de pantalla completa y parcial.",
+      shareTitle: "Compartir",
+      shareData:
+        "Este botón te permite compartir una captura de pantalla de la vista de RA a través de mensajes de texto, correo electrónico o redes sociales.",
+      screenshotTitle: "Captura de Pantalla",
+      screenshotData:
+        "Este botón te permite capturar una captura de pantalla de la vista de RA para guardar en tu galería de fotos.",
+      videoTitle: "Grabación de Video",
+      videoData:
+        "Este botón te permite grabar un video de la vista de RA para capturar los momentos en que localizas la estación.",
+    },
   },
   settings: {
     header: "Ajustes",

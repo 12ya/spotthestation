@@ -13,8 +13,6 @@ import { Globe } from "../components/Globe"
 import { HomeHeader } from "./HomeHeader"
 import { SelectLocation } from "./SelectLocation"
 import { Sightings } from "./Sightings"
-import { CoachMark } from "./CoachMark"
-import { normalizeHeight } from "../../../utils/normalizeHeight"
 import { formatTimer } from "../components/helpers"
 import { useStores } from "../../../models"
 import { useNavigation } from "@react-navigation/native"
@@ -27,6 +25,7 @@ import i18n from "i18n-js"
 import { navigationRef } from "../../../navigators/navigationUtilities"
 import { getCalendars } from "expo-localization"
 import { useCurrentSighting } from "../../../utils/useCurrentSighting"
+import { Tutorial } from "./Tutorial"
 
 export interface HomeScreenRouteProps {
   showSightings: boolean
@@ -48,7 +47,7 @@ function calcAddress(selectedLocation: LocationType, currentLocation: LocationTy
 }
 
 export const HomeScreen = observer(function HomeScreen() {
-  const { $container, $modal, $popupModal, $flatMap, $mark5 } = useStyles(styles)
+  const { $container, $modal, $popupModal, $flatMap } = useStyles(styles)
   const navigation = useNavigation()
   const $topInset = useSafeAreaInsetsStyle(["top", "bottom"], "padding")
   const $topInsetMargin = useSafeAreaInsetsStyle(["top", "bottom"], "margin")
@@ -80,7 +79,6 @@ export const HomeScreen = observer(function HomeScreen() {
   const [isCurrentSightingLoaded, setIsCurrentSightingLoaded] = useState<boolean>(false)
   const [countdown, setCountdown] = useState("- 00:00:00:00")
   const [address, setAddress] = useState("")
-  const [stage, setStage] = useState(1)
   const [isInitialLoad, setIsInitialLoad] = useState(true)
 
   const current = useMemo(
@@ -297,75 +295,6 @@ export const HomeScreen = observer(function HomeScreen() {
     )} ${shortTZ}`
   }
 
-  const renderCoachMarks = useCallback(() => {
-    switch (stage) {
-      case 1:
-        return (
-          <CoachMark
-            icon="mapPinOutlined"
-            title="homeScreen.coachMarks.locationTitle"
-            bodyText="homeScreen.coachMarks.locationData"
-            style={{ marginTop: normalizeHeight(0.18) }}
-            stage={stage}
-            onPressFinish={handleSetCoachCompleted}
-            onPressNext={() => setStage(stage + 1)}
-          />
-        )
-      case 2:
-        return (
-          <CoachMark
-            icon="clock"
-            title="homeScreen.coachMarks.sightingsTitle"
-            bodyText="homeScreen.coachMarks.sightingsData"
-            style={{ marginTop: normalizeHeight(0.28) }}
-            stage={stage}
-            onPressFinish={handleSetCoachCompleted}
-            onPressNext={() => setStage(stage + 1)}
-          />
-        )
-      case 3:
-        return (
-          <CoachMark
-            icon="globe"
-            title="homeScreen.coachMarks.globeTitle"
-            bodyText="homeScreen.coachMarks.globeData"
-            style={{ marginTop: normalizeHeight(0.4) }}
-            stage={stage}
-            onPressFinish={handleSetCoachCompleted}
-            onPressNext={() => setStage(stage + 1)}
-          />
-        )
-      case 4:
-        return (
-          <CoachMark
-            icon="map"
-            title="homeScreen.coachMarks.mapTitle"
-            bodyText="homeScreen.coachMarks.mapData"
-            style={{
-              marginTop: Platform.OS === "ios" ? normalizeHeight(0.15) : normalizeHeight(0.28),
-            }}
-            stage={stage}
-            onPressFinish={handleSetCoachCompleted}
-            onPressNext={() => setStage(stage + 1)}
-          />
-        )
-      case 5:
-        return (
-          <CoachMark
-            icon="list"
-            title="homeScreen.coachMarks.navigationTitle"
-            bodyText="homeScreen.coachMarks.navigationData"
-            style={$mark5}
-            stage={stage}
-            onPressFinish={handleSetCoachCompleted}
-            onPressNext={() => setStage(stage + 1)}
-          />
-        )
-      default:
-        return ""
-    }
-  }, [stage])
-
   return (
     <Screen
       preset="fixed"
@@ -464,13 +393,13 @@ export const HomeScreen = observer(function HomeScreen() {
         backdropOpacity={0.4}
         style={[$modal, $popupModal, Platform.OS === "ios" && $topInsetMargin]}
       >
-        {renderCoachMarks()}
+        <Tutorial onComplete={handleSetCoachCompleted} />
       </MyModal>
     </Screen>
   )
 })
 
-const styles: StyleFn = ({ scale }) => {
+const styles: StyleFn = () => {
   const $container: ViewStyle = {
     flex: 1,
     backgroundColor: colors.backgroundDark,
@@ -490,11 +419,5 @@ const styles: StyleFn = ({ scale }) => {
     width: "100%",
   }
 
-  const $mark5: ViewStyle = {
-    position: "absolute",
-    alignSelf: "center",
-    bottom: scale(160),
-  }
-
-  return { $container, $modal, $popupModal, $flatMap, $mark5 }
+  return { $container, $modal, $popupModal, $flatMap }
 }

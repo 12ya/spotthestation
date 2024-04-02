@@ -214,6 +214,31 @@ const sv = {
     noOrientationSensor: "Orienteringssensor är inte tillgänglig",
     noMagnetometerSensor: "Magnetometern är inte tillgänglig",
     screenshotError: "Kan inte ta skärmbild",
+    coachMarks: {
+      circleTitle: "Upptäck Stationen",
+      circleData:
+        "För att upptäcka stationen, rikta din telefon mot pilen utanför cirkeln. När du kommer närmare kommer cirkelns färg att ändras till grönt.",
+      compassTitle: "Kompass",
+      compassData:
+        "Denna kompass visar dig riktningen du tittar åt och den relativa riktningen där du kan upptäcka stationen.",
+      infoTitle: "Information",
+      infoData:
+        "Denna växel öppnar eller stänger fönstret med detaljerad information om nuvarande eller nästa kommande observation och live-information om stationen.",
+      trajectoryTitle: "Stationens Bana",
+      trajectoryData:
+        "Denna växel visar stationens bana på eller av skärmen. Den fasta linjen visar det förflutna och den prickade linjen visar den framtida banan för stationen.",
+      arTitle: "AR-Vy",
+      arData: "Denna växel växlar mellan fullskärms- och delvis AR-vyer.",
+      shareTitle: "Dela",
+      shareData:
+        "Denna knapp låter dig dela en skärmbild av AR-vyn via sms, e-post eller sociala medier.",
+      screenshotTitle: "Skärmbild",
+      screenshotData:
+        "Denna knapp låter dig ta en skärmbild av AR-vyn för att spara i din fotoalbum.",
+      videoTitle: "Videouppspelning",
+      videoData:
+        "Denna knapp låter dig spela in en video av AR-vyn för att fånga de ögonblick när du upptäcker stationen.",
+    },
   },
   settings: {
     header: "inställningar",

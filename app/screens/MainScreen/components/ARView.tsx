@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useMemo, useState } from "react"
-import { TextStyle, View, ViewStyle } from "react-native"
+import { LayoutChangeEvent, TextStyle, View, ViewStyle } from "react-native"
 
 import { colors } from "../../../theme"
 import { Compass } from "./Compass"
@@ -22,6 +22,8 @@ interface ARViewProps {
   onStillReady: () => void
   onTakeScreenshot: () => void
   location: LocationType
+  onCompassLayout: (event: LayoutChangeEvent) => void
+  onDirectionCircleLayout: (event: LayoutChangeEvent) => void
 }
 
 export const ARView = function ARView({
@@ -34,6 +36,8 @@ export const ARView = function ARView({
   onStillReady,
   onTakeScreenshot,
   location,
+  onCompassLayout,
+  onDirectionCircleLayout,
 }: ARViewProps) {
   const { $container, $hudContainer, $text } = useStyles(styles)
   const [curve, setCurve] = useState<CatmullRomCurve3>()
@@ -149,7 +153,12 @@ export const ARView = function ARView({
       />
 
       {isFullScreen && Boolean(position) && !(still && isStillReady) && (
-        <DirectionCircle screenX={position[0]} screenY={position[1]} setIsSpotted={setIsSpotted} />
+        <DirectionCircle
+          screenX={position[0]}
+          screenY={position[1]}
+          setIsSpotted={setIsSpotted}
+          onLayout={onDirectionCircleLayout}
+        />
       )}
 
       {isFullScreen && isSpotted && !(still && isStillReady) && (
@@ -162,6 +171,7 @@ export const ARView = function ARView({
             issPosition={normalizeHeading(issAzAlt[0])}
             isFullScreen={isFullScreen}
             location={location}
+            onLayout={onCompassLayout}
           />
         )}
         {isRecording && <RecordingIndicator recordedSeconds={recordedSeconds} />}

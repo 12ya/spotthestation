@@ -1,20 +1,21 @@
 import React from "react"
-import { ViewStyle, View, PressableProps, TextStyle } from "react-native"
-import { Button, Icon, IconTypes, Text } from "../../../components"
-import { TxKeyPath } from "../../../i18n"
-import { typography } from "../../../theme"
-import { colors } from "../../../theme/colors"
-import { normalizeHeight } from "../../../utils/normalizeHeight"
-import { StyleFn, useStyles } from "../../../utils/useStyles"
+import { ViewStyle, View, PressableProps, TextStyle, StyleProp } from "react-native"
+import { Button, Icon, IconTypes, Text } from "."
+import { TxKeyPath } from "../i18n"
+import { typography } from "../theme"
+import { colors } from "../theme/colors"
+import { StyleFn, useStyles } from "../utils/useStyles"
 
 export interface CoachMarkProps {
   icon?: IconTypes
   title?: TxKeyPath
   bodyText?: TxKeyPath
   stage?: number
-  style?: ViewStyle
+  style?: StyleProp<ViewStyle>
   onPressNext?: PressableProps["onPress"]
   onPressFinish?: PressableProps["onPress"]
+  totalStages?: number
+  arrowStyle?: StyleProp<ViewStyle>
 }
 
 export function CoachMark({
@@ -25,6 +26,8 @@ export function CoachMark({
   style,
   onPressNext,
   onPressFinish,
+  totalStages,
+  arrowStyle,
 }: CoachMarkProps) {
   const {
     $modalBodyContainer,
@@ -32,11 +35,6 @@ export function CoachMark({
     $skipButton,
     $skipButtonText,
     $nextButton,
-    $location,
-    $sightings,
-    $globe,
-    $map,
-    $navigation,
     $nextButtonText,
     $title,
     $body,
@@ -44,40 +42,11 @@ export function CoachMark({
   } = useStyles(styles)
 
   const renderArrow = () => {
-    switch (stage) {
-      case 1:
-        return (
-          <View style={$location}>
-            <Icon icon="bigArrow" size={55} />
-          </View>
-        )
-      case 2:
-        return (
-          <View style={$sightings}>
-            <Icon icon="bigArrow" size={55} />
-          </View>
-        )
-      case 3:
-        return (
-          <View style={$globe}>
-            <Icon icon="bigArrow" size={55} />
-          </View>
-        )
-      case 4:
-        return (
-          <View style={$map}>
-            <Icon icon="bigArrow" size={55} />
-          </View>
-        )
-      case 5:
-        return (
-          <View style={$navigation}>
-            <Icon icon="bigArrow" size={55} />
-          </View>
-        )
-      default:
-        return ""
-    }
+    return (
+      <View style={arrowStyle}>
+        <Icon icon="bigArrow" size={55} />
+      </View>
+    )
   }
 
   return (
@@ -89,11 +58,11 @@ export function CoachMark({
       style={[$modalBodyContainer, style]}
     >
       {renderArrow()}
-      <Text text={`${stage}/5`} style={$stage} />
-      <Icon icon={icon} size={44} />
+      <Text text={`${stage}/${totalStages}`} style={$stage} />
+      {Boolean(icon) && <Icon icon={icon} size={44} />}
       <Text tx={title} style={$title} />
       <Text tx={bodyText} style={$body} />
-      {stage === 5 ? (
+      {stage === totalStages ? (
         <Button
           accessible
           accessibilityLabel="finish button"
@@ -171,36 +140,6 @@ const styles: StyleFn = ({ scale, fontSizes, lineHeights }) => {
     minWidth: scale(140),
   }
 
-  const $location: ViewStyle = {
-    position: "absolute",
-    top: -scale(80),
-    right: -scale(5),
-  }
-
-  const $sightings: ViewStyle = {
-    position: "absolute",
-    top: -scale(80),
-  }
-
-  const $globe: ViewStyle = {
-    position: "absolute",
-    top: -normalizeHeight(0.2),
-    right: 0,
-    transform: [{ rotate: "-130deg" }],
-  }
-
-  const $map: ViewStyle = {
-    position: "absolute",
-    bottom: -scale(80),
-    transform: [{ rotate: "180deg" }],
-  }
-
-  const $navigation: ViewStyle = {
-    position: "absolute",
-    bottom: -scale(80),
-    transform: [{ rotate: "180deg" }],
-  }
-
   const $nextButtonText: TextStyle = {
     fontFamily: typography.primary.medium,
     fontSize: fontSizes[18],
@@ -243,11 +182,6 @@ const styles: StyleFn = ({ scale, fontSizes, lineHeights }) => {
     $skipButton,
     $skipButtonText,
     $nextButton,
-    $location,
-    $sightings,
-    $globe,
-    $map,
-    $navigation,
     $nextButtonText,
     $title,
     $body,

@@ -192,6 +192,8 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
     $permissionText,
     $calibrateModal,
     $popupModal,
+    $infoModal,
+    $infoModalLandscape,
   } = useStyles(styles)
 
   const topInset = useSafeAreaInsets().top
@@ -715,6 +717,15 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
             <View style={[$buttonColumn, isLandscape && $row]}>
               <IconLinkButton
                 accessible
+                accessibilityLabel="information"
+                accessibilityHint="open information modal"
+                icon="information"
+                buttonStyle={[isFullScreen ? $buttonFs : $button, isLandscape && $mr24]}
+                onPress={onDetails}
+                onLayout={handleTutorialItemLayout("info")}
+              />
+              <IconLinkButton
+                accessible
                 accessibilityLabel="path line"
                 accessibilityHint="enable/disable path line"
                 icon="line"
@@ -736,7 +747,7 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
                   isFullScreen && $activeButton,
                   isLandscape && $mr24,
                 ]}
-                onPress={() => setIsFullScreen(true)}
+                onPress={() => setIsFullScreen(!isFullScreen)}
                 onLayout={handleTutorialItemLayout("fullScreen")}
               />
             </View>
@@ -751,15 +762,6 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
               <Text text={`${translate("units.time")} ${countdown}`} style={$time} />
             </View>
             <View style={[$buttonColumn, isLandscape && $row]}>
-              <IconLinkButton
-                accessible
-                accessibilityLabel="information"
-                accessibilityHint="open information modal"
-                icon="information"
-                buttonStyle={[isFullScreen ? $buttonFs : $button, isLandscape && $ml24]}
-                onPress={onDetails}
-                onLayout={handleTutorialItemLayout("info")}
-              />
               <IconLinkButton
                 accessible
                 accessibilityLabel="share"
@@ -885,15 +887,17 @@ export const ISSViewScreen = observer(function ISSNowScreen() {
       <MyModal
         name="details"
         onBackdropPress={closeDetails}
-        onSwipeComplete={closeDetails}
         useNativeDriver={false}
         useNativeDriverForBackdrop
         propagateSwipe
         backdropOpacity={0}
         animationIn="slideInUp"
         animationOut="slideOutDown"
-        swipeDirection="down"
-        style={[$modal, Platform.OS === "ios" && $topInsetMargin]}
+        style={[
+          $modal,
+          isLandscape ? $infoModalLandscape : $infoModal,
+          Platform.OS === "ios" && $topInsetMargin,
+        ]}
       >
         <DetailsModal issData={issData} location={current} onClose={closeDetails} />
       </MyModal>
@@ -984,6 +988,16 @@ const styles: StyleFn = ({ scale, fontSizes, lineHeights }) => {
   const $calibrateModal: ViewStyle = {
     justifyContent: "center",
     marginHorizontal: scale(24),
+  }
+
+  const $infoModal: ViewStyle = {
+    paddingHorizontal: 18,
+    justifyContent: "center",
+  }
+
+  const $infoModalLandscape: ViewStyle = {
+    ...$infoModal,
+    paddingHorizontal: 0,
   }
 
   const $body: ViewStyle = {
@@ -1093,5 +1107,7 @@ const styles: StyleFn = ({ scale, fontSizes, lineHeights }) => {
     $permissionText,
     $calibrateModal,
     $popupModal,
+    $infoModal,
+    $infoModalLandscape,
   }
 }

@@ -1,6 +1,6 @@
 import { StyleFn, useStyles } from "../../../utils/useStyles"
 import React, { memo } from "react"
-import { ViewStyle, View, PressableProps, TextStyle } from "react-native"
+import { ViewStyle, View, PressableProps, TextStyle, ScrollView } from "react-native"
 import { Icon, Text } from "../../../components"
 import { colors, typography } from "../../../theme"
 import { translate } from "../../../i18n"
@@ -13,7 +13,7 @@ import { getCalendars } from "expo-localization"
 import i18n from "i18n-js"
 import { degToCompass } from "../../../utils/astro"
 
-export interface CalibrateCompassModalProps {
+export interface DetailsModalProps {
   onClose?: PressableProps["onPress"]
   issData: OrbitPoint[]
   location: LocationType
@@ -23,10 +23,12 @@ export const DetailsModal = memo(function DetailsModal({
   issData,
   location,
   onClose,
-}: CalibrateCompassModalProps) {
+}: DetailsModalProps) {
   const {
     $modalBodyContainer,
+    $modalBody,
     $contentContainer,
+    $modalHeader,
     $close,
     $title,
     $buttonsContainer,
@@ -71,26 +73,28 @@ export const DetailsModal = memo(function DetailsModal({
 
   return (
     <View style={$modalBodyContainer}>
-      <Icon
-        icon="x"
-        accessible
-        accessibilityLabel="x button"
-        accessibilityHint="close modal"
-        accessibilityRole="button"
-        color={colors.palette.neutral450}
-        onPress={onClose}
-        containerStyle={$close}
-        size={36}
-      />
-      <Text
-        accessible
-        accessibilityLabel="title"
-        accessibilityHint="title"
-        accessibilityRole="text"
-        tx="issView.details.title"
-        style={$title}
-      />
-      <View style={$contentContainer}>
+      <View style={$modalHeader}>
+        <Icon
+          icon="x"
+          accessible
+          accessibilityLabel="x button"
+          accessibilityHint="close modal"
+          accessibilityRole="button"
+          color={colors.palette.neutral450}
+          onPress={onClose}
+          containerStyle={$close}
+          size={36}
+        />
+        <Text
+          accessible
+          accessibilityLabel="title"
+          accessibilityHint="title"
+          accessibilityRole="text"
+          tx="issView.details.title"
+          style={$title}
+        />
+      </View>
+      <ScrollView style={$modalBody} contentContainerStyle={$contentContainer}>
         <View style={$buttonsContainer}>
           <View
             accessible
@@ -275,7 +279,7 @@ export const DetailsModal = memo(function DetailsModal({
             />
           </View>
         </View>
-      </View>
+      </ScrollView>
     </View>
   )
 })
@@ -283,15 +287,24 @@ export const DetailsModal = memo(function DetailsModal({
 const styles: StyleFn = ({ scale, fontSizes, lineHeights }) => {
   const $modalBodyContainer: ViewStyle = {
     backgroundColor: colors.palette.overlay80,
-    borderTopLeftRadius: scale(18),
-    borderTopRightRadius: scale(18),
+    borderRadius: scale(18),
+    maxHeight: "100%",
+  }
+
+  const $modalHeader: ViewStyle = {
+    flexDirection: "row",
     paddingHorizontal: scale(36),
+    paddingBottom: scale(15),
+  }
+
+  const $modalBody: ViewStyle = {
+    width: "100%",
+    maxHeight: "100%",
   }
 
   const $contentContainer: ViewStyle = {
-    width: "100%",
-    paddingTop: scale(15),
     paddingBottom: scale(24),
+    paddingHorizontal: scale(36),
   }
 
   const $close: ViewStyle = {
@@ -382,7 +395,9 @@ const styles: StyleFn = ({ scale, fontSizes, lineHeights }) => {
 
   return {
     $modalBodyContainer,
+    $modalBody,
     $contentContainer,
+    $modalHeader,
     $close,
     $title,
     $subtitle,

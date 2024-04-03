@@ -32,13 +32,10 @@ export function Tutorial({ onComplete, itemsLayout }: TutorialProps) {
   const [stage, setStage] = useState(1)
   const [containerLayout, setContainerLayout] = useState<TutorialItemLayout>()
 
-  // const { height: windowHeight} = useWindowDimensions()
-  // console.log(windowHeight)
   const containerPadding = $container.paddingHorizontal as number
 
   const renderCoachMarks = useCallback(() => {
     if (Object.keys(itemsLayout).length < totalStages || !containerLayout) return null
-    console.log(containerLayout.y)
     switch (stage) {
       case 1:
         return (
@@ -104,7 +101,7 @@ export function Tutorial({ onComplete, itemsLayout }: TutorialProps) {
                   ($scale60.width as number),
               },
             ]}
-            arrowStyle={[$arrow, $right]}
+            arrowStyle={[$arrow, $left]}
             stage={stage}
             onPressFinish={onComplete}
             onPressNext={() => setStage(stage + 1)}

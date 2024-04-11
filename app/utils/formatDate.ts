@@ -100,7 +100,9 @@ export const isDateBetweenHours = (date: Date, start: Date, end: Date) => {
 }
 
 export const getShortTZ = (timeZone: string) => {
-  return moment.tz(new Date(), timeZone).format("z")
+  let shortTz = moment.tz(new Date(), timeZone).format("z")
+  if (shortTz.startsWith("+") || shortTz.startsWith("-")) shortTz = `UTC${shortTz}`
+  return shortTz
 }
 
 export const getCurrentTimeZone = () => {

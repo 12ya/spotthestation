@@ -189,6 +189,8 @@ export const HomeScreen = observer(function HomeScreen() {
     if (initLoading && sightingsLoaded && issDataLoaded && isCurrentSightingLoaded) {
       console.log("initialized")
       setInitLoading(false)
+    }
+    if (sightingsLoaded && issDataLoaded && isCurrentSightingLoaded) {
       getCoach().catch((e) => console.log(e))
     }
   }, [issDataLoaded, initLoading, sightingsLoaded, isCurrentSightingLoaded])

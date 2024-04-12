@@ -164,6 +164,7 @@ export const iconRegistry = {
   information: require("../../assets/icons/information.png"),
   trackerActive: require("../../assets/icons/tracker-active.png"),
   trackerInactive: require("../../assets/icons/tracker-inactive.png"),
+  tutorial: require("../../assets/icons/tutorial.png"),
 }
 
 const styles: StyleFn = () => {

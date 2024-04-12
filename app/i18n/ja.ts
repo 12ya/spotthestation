@@ -256,6 +256,13 @@ const ja = {
       medium: "中",
       high: "高",
     },
+    tutorials: "チュートリアル",
+    tutorialsData: {
+      description:
+        "ホームページとARビューページのステップバイステップチュートリアルをもう一度見たいですか？",
+      homePage: "ホームページ",
+      arPage: "ARビュー",
+    },
     termsAndConditionsData: {
       backButton: "設定",
       ios: {

@@ -259,6 +259,13 @@ const en = {
       medium: "Medium",
       high: "High",
     },
+    tutorials: "Tutorials",
+    tutorialsData: {
+      description:
+        "Do you want to see the step-by-step tutorials for the Home and AR View pages one more time?",
+      homePage: "Home Page",
+      arPage: "AR View",
+    },
     termsAndConditionsData: {
       backButton: "Settings",
       ios: {

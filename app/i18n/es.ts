@@ -260,6 +260,13 @@ const es = {
       medium: "Media",
       high: "Alta",
     },
+    tutorials: "Tutoriales",
+    tutorialsData: {
+      description:
+        "¿Quieres ver los tutoriales paso a paso de las páginas de Inicio y Vista AR una vez más?",
+      homePage: "Página de inicio",
+      arPage: "Vista AR",
+    },
     termsAndConditionsData: {
       backButton: "Ajustes",
       ios: {

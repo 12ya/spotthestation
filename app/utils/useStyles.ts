@@ -20,6 +20,7 @@ export function useStyles(fn: StyleFn) {
 
   return useMemo(() => {
     const fontSizes = {
+      9: scale(9, true),
       10: scale(10, true),
       12: scale(12, true),
       13: scale(13, true),

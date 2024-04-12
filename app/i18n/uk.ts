@@ -256,6 +256,13 @@ const uk = {
       medium: "Середня",
       high: "Висока",
     },
+    tutorials: "Навчальні матеріали",
+    tutorialsData: {
+      description:
+        "Чи бажаєте ви ще раз побачити покрокові інструкції для головної та AR-сторінок?",
+      homePage: "Головна сторінка",
+      arPage: "Режим AR",
+    },
     termsAndConditionsData: {
       backButton: "Налаштування",
       ios: {

@@ -15,6 +15,7 @@ import i18n from "i18n-js"
 import * as storage from "../../../utils/storage"
 import Modal from "react-native-modal"
 import { CalibrateCompassModal } from "./CalibrateCompassModal"
+import { TutorialsModal } from "./TutorialsModal"
 import { isMagnetometerAvailable } from "../../../utils/orientation"
 
 const languages = uniqBy(
@@ -42,6 +43,7 @@ export const SettingsScreen = observer(function SettingsScreen() {
   } = useStyles(styles)
 
   const [isCalibrationModalVisible, setIsCalibrationModalVisible] = useState(false)
+  const [isTutorialsModalVisible, setIsTutorialsModalVisible] = useState(false)
   const navigation = useNavigation()
   const topInset = useSafeAreaInsets().top
   const { setNotifications } = useStores()
@@ -68,6 +70,21 @@ export const SettingsScreen = observer(function SettingsScreen() {
       )
 
     setIsCalibrationModalVisible(true)
+  }
+
+  const handleTutorials = () => {
+    setIsTutorialsModalVisible(true)
+  }
+
+  const handleTutorialClose = async (tutorial?: string) => {
+    setIsTutorialsModalVisible(false)
+    if (tutorial === "home") {
+      await storage.remove("coachCompleted")
+      navigation.navigate("Home" as never)
+    } else if (tutorial === "ar") {
+      await storage.remove("arCoachCompleted")
+      navigation.navigate("ISSView" as never)
+    }
   }
 
   const headerStyle = { ...$headerStyleOverride }
@@ -112,6 +129,7 @@ export const SettingsScreen = observer(function SettingsScreen() {
           onPress={() => handleNavigate("ContactUs")}
         />
         <SettingsItem icon="compass" title="settings.calibrateCompass" onPress={handleCalibrate} />
+        <SettingsItem icon="tutorial" title="settings.tutorials" onPress={handleTutorials} />
         <SettingsItem
           icon="globe"
           title="settings.language"
@@ -160,6 +178,23 @@ export const SettingsScreen = observer(function SettingsScreen() {
         style={$modal}
       >
         <CalibrateCompassModal onClose={() => setIsCalibrationModalVisible(false)} />
+      </Modal>
+
+      <Modal
+        isVisible={isTutorialsModalVisible}
+        onBackdropPress={() => setIsTutorialsModalVisible(false)}
+        onSwipeComplete={() => setIsTutorialsModalVisible(false)}
+        animationIn="slideInUp"
+        animationOut="slideOutDown"
+        swipeDirection="down"
+        useNativeDriver
+        useNativeDriverForBackdrop
+        hideModalContentWhileAnimating
+        propagateSwipe
+        backdropOpacity={0.65}
+        style={$modal}
+      >
+        <TutorialsModal onClose={handleTutorialClose} />
       </Modal>
     </Screen>
   )

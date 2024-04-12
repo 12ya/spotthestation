@@ -255,6 +255,12 @@ const sv = {
       medium: "Medium",
       high: "Hög",
     },
+    tutorials: "Handledningar",
+    tutorialsData: {
+      description: "Vill du se de stegvisa handledningarna för Startsida och AR-vy igen?",
+      homePage: "Startsida",
+      arPage: "AR-vy",
+    },
     termsAndConditionsData: {
       backButton: "inställningar",
       ios: {

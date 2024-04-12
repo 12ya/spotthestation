@@ -162,14 +162,14 @@ const styles: StyleFn = ({ scale, fontSizes, lineHeights }) => {
   const $timeText: TextStyle = {
     fontFamily: typography.primary.normal,
     color: colors.palette.neutral250,
-    fontSize: fontSizes[18],
+    fontSize: fontSizes[15],
     lineHeight: lineHeights[24],
     textAlign: "center",
   }
 
   const $tipText: TextStyle = {
     ...$headText,
-    fontSize: fontSizes[10],
+    fontSize: fontSizes[9],
   }
 
   const $firstHeadText: TextStyle = {

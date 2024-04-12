@@ -259,6 +259,13 @@ const nl = {
       medium: "Gemiddeld",
       high: "Hoog",
     },
+    tutorials: "Handleidingen",
+    tutorialsData: {
+      description:
+        "Wil je de stapsgewijze handleidingen voor de Startpagina en AR-weergave nog een keer zien?",
+      homePage: "Startpagina",
+      arPage: "AR-weergave",
+    },
     termsAndConditionsData: {
       backButton: "Instellingen",
       ios: {

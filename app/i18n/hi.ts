@@ -256,6 +256,13 @@ const hi = {
       medium: "मध्यम",
       high: "उच्च",
     },
+    tutorials: "ट्यूटोरियल्स",
+    tutorialsData: {
+      description:
+        "क्या आप घर की पेज और एआर दृश्य पेज के कदम से कदम ट्यूटोरियल को एक और बार देखना चाहते हैं?",
+      homePage: "होम पेज",
+      arPage: "एआर दृश्य",
+    },
     termsAndConditionsData: {
       backButton: "समायोजन",
       ios: {

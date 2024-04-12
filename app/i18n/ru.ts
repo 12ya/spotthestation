@@ -257,6 +257,13 @@ const ru = {
       medium: "Средняя",
       high: "Высокая",
     },
+    tutorials: "Учебные материалы",
+    tutorialsData: {
+      description:
+        "Хотите ли вы еще раз посмотреть пошаговые инструкции для домашней и AR-страниц?",
+      homePage: "Главная страница",
+      arPage: "Режим AR",
+    },
     termsAndConditionsData: {
       backButton: "Настройки",
       ios: {

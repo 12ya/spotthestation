@@ -261,6 +261,13 @@ const de = {
       medium: "Mittel",
       high: "Hoch",
     },
+    tutorials: "Anleitungen",
+    tutorialsData: {
+      description:
+        "Möchtest du die schrittweisen Anleitungen für die Startseite und die AR-Ansicht noch einmal sehen?",
+      homePage: "Startseite",
+      arPage: "AR-Ansicht",
+    },
     termsAndConditionsData: {
       backButton: "Einstellungen",
       ios: {

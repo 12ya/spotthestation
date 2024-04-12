@@ -316,7 +316,7 @@ exports[`renders correctly 1`] = `
             {
               "color": "#DEDDDE",
               "fontFamily": "Helvetica Neue",
-              "fontSize": 26,
+              "fontSize": 22,
               "lineHeight": 35,
               "textAlign": "center",
             },
@@ -349,7 +349,7 @@ exports[`renders correctly 1`] = `
             {
               "color": "#ADADAE",
               "fontFamily": "Helvetica Neue",
-              "fontSize": 15,
+              "fontSize": 13,
               "lineHeight": 23,
               "textAlign": "center",
             },
@@ -427,7 +427,7 @@ exports[`renders correctly 1`] = `
             {
               "color": "#DEDDDE",
               "fontFamily": "Helvetica Neue",
-              "fontSize": 26,
+              "fontSize": 22,
               "lineHeight": 35,
               "textAlign": "center",
             },
@@ -456,7 +456,7 @@ exports[`renders correctly 1`] = `
             {
               "color": "#ADADAE",
               "fontFamily": "Helvetica Neue",
-              "fontSize": 15,
+              "fontSize": 13,
               "lineHeight": 23,
               "textAlign": "center",
             },

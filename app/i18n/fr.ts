@@ -262,6 +262,13 @@ const fr = {
       medium: "Moyenne",
       high: "Élevée",
     },
+    tutorials: "Tutoriels",
+    tutorialsData: {
+      description:
+        "Voulez-vous revoir les tutoriels étape par étape des pages d'accueil et de vue AR une fois de plus?",
+      homePage: "Page d'accueil",
+      arPage: "Vue AR",
+    },
     termsAndConditionsData: {
       backButton: "Paramètres",
       ios: {

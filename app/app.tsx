@@ -38,6 +38,7 @@ const codePushConfig = {
 Sentry.init({
   dsn: Config.SENTRY_DSN,
   environment: Config.SENTRY_ENVIRONMENT,
+  appHangTimeoutInterval: 5,
 })
 
 enableLatestRenderer()

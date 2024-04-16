@@ -551,7 +551,7 @@ PODS:
     - Sentry/HybridSDK (= 8.7.3)
   - RNShare (8.2.1):
     - React-Core
-  - RNSnackbar (2.4.0):
+  - RNSnackbar (2.7.1):
     - React-Core
   - RNSVG (13.9.0):
     - React-Core
@@ -914,7 +914,7 @@ SPEC CHECKSUMS:
   RNSensors: 117ba71c7eeeea0407ea0c0bb79e3495d602049b
   RNSentry: 9f0447b3ce13806f544903748de423259ead8552
   RNShare: eaee3dd5a06dad397c7d3b14762007035c5de405
-  RNSnackbar: be3333a21a453ccc272f41a8add5a71f7d44dfcd
+  RNSnackbar: eb4e012514c60433cbe933be0846e8f2abb6d2b6
   RNSVG: 53c661b76829783cdaf9b7a57258f3d3b4c28315
   Sentry: c7a86f43510a7d5678d4de28d78c28ab351d295b
   SentryPrivate: 2eaabf598a46d4b9b8822aef766df2a84caf2e6f
@@ -925,4 +925,4 @@ SPEC CHECKSUMS:
 
 PODFILE CHECKSUM: b9cd39bec1952346f4af0a0660dc1b5416da4007
 
-COCOAPODS: 1.13.0
+COCOAPODS: 1.12.1

@@ -194,7 +194,7 @@ export function Sightings({
   }
 
   const getCoach = async () => {
-    setSightingsCoachVisible(!(await storage.load("sightingsCoachVisible")))
+    setSightingsCoachVisible(!(await storage.load(storage.KEYS.SIGHTINGS_COACH_VISIBLE)))
   }
 
   useEffect(() => {
@@ -203,7 +203,7 @@ export function Sightings({
 
   const handleSetSightingsCoachVisible = async () => {
     setSightingsCoachVisible(false)
-    await storage.save("sightingsCoachVisible", true)
+    await storage.save(storage.KEYS.SIGHTINGS_COACH_VISIBLE, true)
   }
 
   return (

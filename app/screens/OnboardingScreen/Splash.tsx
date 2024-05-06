@@ -33,7 +33,7 @@ export function Splash() {
   const $topInset = useSafeAreaInsetsStyle(["top", "bottom"], "padding")
 
   const generateUser = async () => {
-    let userId = (await storage.load("userId")) as string
+    let userId = (await storage.load(storage.KEYS.USER_ID)) as string
     if (!userId) {
       userId = getUserId()
       await analytics()
@@ -42,7 +42,7 @@ export function Splash() {
       await analytics()
         .logTutorialBegin()
         .catch(() => null)
-      await storage.save("userId", getUserId())
+      await storage.save(storage.KEYS.USER_ID, getUserId())
       setTimeout(() => {
         handleNavigate()
       }, 3000)

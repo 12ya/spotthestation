@@ -146,14 +146,14 @@ function App(props: AppProps) {
   useEffect(() => {
     ;(async () => {
       try {
-        const locale = await storage.load("locale")
+        const locale = await storage.load(storage.KEYS.LOCALE)
         if (locale) setLocale(locale as string)
         else {
-          const prevSystemLocale = await storage.load("prevSystemLocale")
+          const prevSystemLocale = await storage.load(storage.KEYS.PREV_SYSTEM_LOCALE)
           if (prevSystemLocale && prevSystemLocale !== i18n.locale) updateLocationAddresses()
         }
 
-        await storage.save("prevSystemLocale", i18n.locale)
+        await storage.save(storage.KEYS.PREV_SYSTEM_LOCALE, i18n.locale)
         setIsLocaleLoaded(true)
       } catch {
         setIsLocaleLoaded(true)
